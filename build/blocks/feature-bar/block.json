@@ -1,0 +1,24 @@
+{
+  "apiVersion": 3,
+  "name": "zero/feature-bar",
+  "title": "Feature Bar",
+  "category": "design",
+  "icon": "star-filled",
+  "attributes": {
+    "items": {
+      "type": "array",
+      "default": []
+    },
+    "logos": {
+      "type": "array",
+      "default": []
+    },
+    "sectionClass": {
+      "type": "string",
+      "default": "container mx-auto py-10 bg-white rounded-xl shadow-sm"
+    }
+  },
+  "editorScript": "ztb-blocks-js",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

@@ -1,0 +1,45 @@
+{
+  "apiVersion": 3,
+  "name": "zero/situation-cards",
+  "title": "Situation Cards",
+  "category": "design",
+  "icon": "welcome-view-site",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Welke situatie past bij jou?"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Zo weet je het snelst wat je het beste met je geld kan doen."
+    },
+    "cards": {
+      "type": "array",
+      "default": [
+        {
+          "title": "Beginnen met opbouwen",
+          "description": "Start met beleggen of pensioen.",
+          "url": ""
+        },
+        {
+          "title": "Er komt geld vrij",
+          "description": "Erfenis, verkoop bedrijf, polis.",
+          "url": ""
+        },
+        {
+          "title": "Voorbereiden op later",
+          "description": "Pensioenuitkering, lange termijnplan.",
+          "url": ""
+        },
+        {
+          "title": "Investeren voor anderen",
+          "description": "Kinderen, kleinkinderen.",
+          "url": ""
+        }
+      ]
+    }
+  },
+  "editorScript": "ztb-blocks-js",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

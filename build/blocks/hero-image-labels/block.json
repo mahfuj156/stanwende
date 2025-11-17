@@ -1,0 +1,57 @@
+{
+  "apiVersion": 3,
+  "name": "zero/hero-image-labels",
+  "title": "Hero Image With Labels",
+  "category": "design",
+  "icon": "format-image",
+  "description": "Hero block with heading, content, image, labels and optional video link.",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Voor wie is Stan&Wende?"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Stan&Wende is er voor de kleine en grote belegger..."
+    },
+    "content": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Over Stan&Wende"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "#"
+    },
+    "secondaryButtonText": {
+      "type": "string",
+      "default": "Plan kennismaking"
+    },
+    "secondaryButtonUrl": {
+      "type": "string",
+      "default": "#"
+    },
+    "mainImage": {
+      "type": "string",
+      "default": ""
+    },
+    "leftLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "rightLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "videoUrl": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": "ztb-blocks-js",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

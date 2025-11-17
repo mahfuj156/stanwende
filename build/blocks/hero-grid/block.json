@@ -1,0 +1,44 @@
+{
+  "apiVersion": 3,
+  "name": "zero/hero-grid",
+  "title": "Hero Grid",
+  "category": "design",
+  "icon": "slides",
+  "attributes": {
+    "bullets": {
+      "type": "array",
+      "default": []
+    },
+    "bulletIcons": {
+      "type": "array",
+      "default": []
+    },
+    "images": {
+      "type": "array",
+      "default": []
+    },
+    "sectionClass": {
+      "type": "string",
+      "default": "container mx-auto py-20"
+    },
+    "bulletListClass": {
+      "type": "string",
+      "default": "space-y-2 mt-6"
+    },
+    "bulletItemClass": {
+      "type": "string",
+      "default": "text-lg flex items-start gap-2"
+    },
+    "styleType": {
+      "type": "string",
+      "default": "light"
+    },
+    "imagePosition": {
+      "type": "string",
+      "default": "right"
+    }
+  },
+  "editorScript": "ztb-blocks-js",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

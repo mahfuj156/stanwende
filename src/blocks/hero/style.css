@@ -1,0 +1,33 @@
+
+.custom-column {
+    width: 48% !IMPORTANT;
+}
+
+.line-height-loose {
+    line-height: 70px !important;
+}
+
+.btn-shadow {
+    box-shadow: 
+        0px 1px 2px 0px #0608060D,
+        0px -2px 1px 0px #00000033 inset,
+        0px 0px 0px 1px #06080626 inset,
+        0px 2px 1px 0px #FFFFFF40 inset,
+        0px 32px 24px 0px #FFFFFF0D inset;
+}
+
+.btn-offset-shadow {
+    box-shadow: 
+    0px 1px 2px 0px #0608060D,
+    0px -2px 1px 0px #0608060D inset,
+    0px 0px 0px 1px #0608060D inset;
+
+}
+
+.hero-gallery img:first-child{
+    margin-top: 12px;
+}
+.hero-gallery img:nth-child(3),
+.hero-gallery img:nth-child(6){
+    margin-bottom: 0px;
+}

@@ -1,0 +1,26 @@
+{
+  "apiVersion": 3,
+  "name": "zero/hero",
+  "title": "Hero Section",
+  "category": "design",
+  "icon": "slides",
+  "attributes": {
+    "heading": { "type": "string", "default": "" },
+    "subheading": { "type": "string", "default": "" },
+    "bullets": { "type": "array", "default": [] },
+    "buttonPrimary": { "type": "string", "default": "" },
+    "buttonSecondary": { "type": "string", "default": "" },
+    "images": { "type": "array", "default": [] },
+    "sectionClass": { "type": "string", "default": "container mx-auto py-20" },
+     "bulletListClass": { "type": "string", "default": "space-y-2 mt-6" },
+    "bulletItemClass": { "type": "string", "default": "text-lg flex items-start gap-2" },
+
+    "styleType": {
+      "type": "string",
+      "default": "default"
+    }
+  },
+  "editorScript": "ztb-blocks-js",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

@@ -37,5 +37,51 @@
 
 
 .feature-bar-box {
-    box-shadow: 0px 1px 2px 0px #0000000F; /* bottom shadow only */
+    box-shadow: 
+        0px 1px 2px 0px #0000000F,
+        0px 1px 3px 0px #0000001A;
+}
+
+ .custom-neg-mt {
+     margin-top: 60px !important;
+    }
+
+
+.mobile-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem; /* adjust spacing between logos */
+}
+
+.mobile-logos .mobile-logo-item {
+    flex: 0 0 24%; /* 2 logos per row on mobile */
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem; /* space between rows */
+}
+ .more-text {
+        display: none;
+    }
+
+@media (min-width: 768px) {
+    .md-hidden-custom { 
+        display: none !important;
+    }
+
+    .custom-neg-mt {
+     margin-top: -100px !important;
+    }
+
+    .feature-bar-box {
+        box-shadow: 0px 1px 2px 0px #0000000F; /* bottom shadow only */
+    }
+ .mobile-logos {
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+  }
+  .mobile-logos .mobile-logo-item {
+    flex: 0 auto; /* natural width on larger screens */
+    margin-bottom: 0;
+  }
 }

@@ -4,40 +4,45 @@ $logos = $attributes['logos'] ?? [];
 $sectionClass = $attributes['sectionClass'] ?? 'container mx-auto py-10 bg-white rounded-xl';
 ?>
 
-<section class="<?= esc_attr($sectionClass); ?> relative -mt-[100px] z-50" style="margin-top: -78px;">
-  
-                <div class="max-w-container-wide mx-auto feature-bar-box bg-white rounded-xl px-6 ">
-                <div >
-    <div class="flex flex-col  gap-6 justify-center items-center   py-6 ">
+<section class="<?= esc_attr($sectionClass); ?> relative custom-neg-mt z-50 px-4 md:px-0">
+
+    <div class="max-w-container-wide mx-auto feature-bar-box bg-white rounded-xl px-4 sm:px-6 md:px-10 py-8"> 
+        <div class="flex flex-col gap-8 text-center">
 
             <!-- Feature Items -->
-            <div class="flex flex-col md:flex-row md:items-center gap-8 text-center">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-center gap-6">
+
                 <?php foreach ($items as $item): ?>
-                    <div class="flex items-center gap-2 text-lg">
-                        <i class="<?= esc_attr($item['icon']); ?> text-green-600"></i>
-                        <span><?= wp_kses_post($item['text']); ?></span>
+                    <div class="flex items-start gap-3 text-left md:text-center">
+                        <i class="<?= esc_attr($item['icon']); ?> text-green-600 text-xl"></i>
+                        <span class="text-base sm:text-lg leading-snug">
+                            <?= wp_kses_post($item['text']); ?>
+                        </span>
                     </div>
                 <?php endforeach; ?>
+
             </div>
 
             <hr class="w-full border-gray-200" />
 
             <!-- Logos -->
-            <div class="flex flex-wrap">
-                <div class="text-center font-bold text-gray-700 ">
+            <div class="flex flex-col items-center gap-4">
+
+                <div class="text-center font-bold text-gray-700">
                     Bekend van:
                 </div>
 
-                <div class="flex flex-wrap justify-center gap-6">
+               <div class="mobile-logos">
                     <?php foreach ($logos as $logo): ?>
-                        <img
-                            src="<?= esc_url($logo['url']); ?>"
-                            class=" object-contain  "
-                        />
+                        <div class="mobile-logo-item">
+                            <img src="<?= esc_url($logo['url']); ?>" class="h-6 sm:h-8 object-contain" />
+                        </div>
                     <?php endforeach; ?>
+                </div>
             </div>
-            </div>
+
         </div>
-        </div>
+
     </div>
+
 </section>

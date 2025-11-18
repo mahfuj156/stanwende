@@ -12,30 +12,14 @@ $leftLabel = $attributes['leftLabel'] ?? '';
 $rightLabel = $attributes['rightLabel'] ?? '';
 $videoUrl   = $attributes['videoUrl'] ?? '';
 ?>
+ 
 
-<section class=" px-4 py-20 bg-custom-bg">
+ <section class="px-4 py-20 bg-custom-bg">
   <div class="max-w-container-wide mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
-      <!-- LEFT SIDE -->
-      <div>
-        <h2 class="text-4xl font-bold mb-4"><?= esc_html($heading); ?></h2>
-        <p class="text-gray-700 mb-4"><?= esc_html($subtitle); ?></p>
-        <p class="text-gray-700 mb-6"><?= esc_html($content); ?></p>
-
-        <div class="flex gap-4">
-          <a href="<?= esc_url($buttonUrl); ?>" class="bg-green-600 text-white px-4 py-2 rounded no-underline">
-            <?= esc_html($buttonText); ?>
-          </a>
-
-          <a href="<?= esc_url($secondaryButtonUrl); ?>" class="text-black no-underline">
-            <?= esc_html($secondaryButtonText); ?>
-          </a>
-        </div>
-      </div>
-
-      <!-- RIGHT SIDE -->
-      <div class="relative">
+      <!-- IMAGE on mobile first order 1, on desktop order 2 -->
+      <div class="order-1 md:order-2 relative">
         <?php if ($mainImage): ?>
           <img src="<?= esc_url($mainImage); ?>" class="rounded-xl w-full object-cover" alt="">
         <?php endif; ?>
@@ -62,7 +46,33 @@ $videoUrl   = $attributes['videoUrl'] ?? '';
         <?php endif; ?>
       </div>
 
+      <!-- TEXT on mobile first order 2, on desktop order 1 -->
+      <div class="order-2 md:order-1">
+        <h2 class="text-h46  md:text-h46 font-bold leading-114 font-bold mb-4"><?= esc_html($heading); ?></h2>
+        <p class="text-info text-h18 font-bold leading-150 mb-4"><?= esc_html($subtitle); ?></p>
+        <p class="text-gray-700 mb-6"><?= esc_html($content); ?></p>
+
+
+         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+        <a 
+            class="inline-block bg-primary text-white px-5 py-3 text-p16 rounded-12 no-underline shadow-btn-primary text-center"
+            href="<?= esc_url($buttonUrl); ?>"
+        >
+            <?= esc_html($buttonText); ?>
+        </a>
+
+        <a 
+            class="inline-block text-primary font-semibold no-underline px-3 py-3 text-p16 text-center"
+            href="<?= esc_url($secondaryButtonUrl); ?>"
+        >
+          <?= esc_html($secondaryButtonText); ?> >
+        </a>
+    </div>
+
+         
+      </div>
+
     </div>
   </div>
-
 </section>
+

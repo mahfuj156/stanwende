@@ -3,3 +3,8 @@
  import "./blocks/feature-bar";
  import "./blocks/situation-cards";
  import "./blocks/hero-image-labels";
+ import "./blocks/performance-section";
+ import "./blocks/comparison-block";
+ import "./blocks/testimonial-block";
+ import "./blocks/compare-block";
+ import "./blocks/faq-block";

@@ -1,0 +1,38 @@
+{
+  "apiVersion": 3,
+  "name": "zero/testimonial-block",
+  "title": "Testimonial Block",
+  "category": "widgets",
+  "icon": "format-chat",
+  "description": "A testimonial block with title, subtitle, CTA button, and multiple testimonials.",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Al 12+ jaar gaan 123 anderen je voor"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "We worden door onze klanten beoordeeld met een 4.8/5. Lees hieronder alle verhalen van onze tevreden klanten."
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Bekijk alle reviews"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "#"
+    },
+    "testimonials": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": true
+  },
+  "editorScript": "ztb-blocks-js",
+  "editorStyle": "ztb-blocks-css",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

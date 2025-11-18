@@ -1,0 +1,35 @@
+{
+  "apiVersion": 3,
+  "name": "zero/faq-block",
+  "title": "FAQ Accordion",
+  "category": "widgets",
+  "icon": {
+    "src": "fa-regular fa-circle-question"
+  },
+  "description": "Frequently Asked Questions block with accordion.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Veelgestelde vragen"
+    },
+    "items": {
+      "type": "array",
+      "default": []
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Bekijk alle vragen"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "#"
+    }
+  },
+  "editorScript": "ztb-blocks-js",
+  "editorStyle": "ztb-blocks-css",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

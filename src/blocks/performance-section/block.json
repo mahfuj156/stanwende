@@ -1,0 +1,64 @@
+{
+  "apiVersion": 3,
+  "name": "zero/performance-section",
+  "title": "Performance Section",
+  "category": "design",
+  "icon": "chart-line",
+  "description": "Chart + text section with stats and CTA buttons",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Duurzaamheid en rendement gaan prima samen"
+    },
+    "eyebrow": {
+      "type": "string",
+      "default": "Feit"
+    },
+    "description": {
+      "type": "string",
+      "default": "Er wordt vaak gedacht dat duurzaam beleggen lager rendement betekent. Niets is minder waar..."
+    },
+    "stat1": {
+      "type": "string",
+      "default": "5,84%"
+    },
+    "stat1_label": {
+      "type": "string",
+      "default": "Gemiddeld groen rendement"
+    },
+    "stat2": {
+      "type": "string",
+      "default": "14 jaar"
+    },
+    "stat2_label": {
+      "type": "string",
+      "default": "Beleggingservaring sinds 2012"
+    },
+    "chartUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "#E4ECE5"
+    }
+  },
+  "supports": {
+    "align": true,
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "typography": {
+      "fontSize": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true
+    }
+  },
+  "editorScript": "ztb-blocks-js",
+  "editorStyle": "ztb-blocks-css",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

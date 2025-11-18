@@ -46,10 +46,58 @@ function enqueue_font_awesome() {
 add_action('wp_enqueue_scripts', 'enqueue_font_awesome');
 add_action('enqueue_block_editor_assets', 'enqueue_font_awesome');
 
+
+function ztb_enqueue_swiper() {
+    // Swiper CSS
+    wp_enqueue_style(
+        'swiper-css',
+        'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
+        [],
+        '11.0.0'
+    );
+
+    // Swiper JS
+    wp_enqueue_script(
+        'swiper-js',
+        'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
+        [],
+        '11.0.0',
+        true
+    );
+
+    // Slider initialization script
+    wp_add_inline_script(
+        'swiper-js',
+        "
+        document.addEventListener('DOMContentLoaded', function () {
+            const swiperEl = document.querySelector('.mySwiper');
+            if (swiperEl) {
+                new Swiper('.mySwiper', {
+                    slidesPerView: 2.2,
+                    spaceBetween: 16,
+                    loop: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                });
+            }
+        });
+        "
+    );
+}
+add_action('wp_enqueue_scripts', 'ztb_enqueue_swiper');
+
+
 // Auto-load all blocks (block.json)
 add_action("init", function () {
 
-    $blocks = ["hero", "hero-grid","feature-bar","situation-cards","hero-image-labels"];
+    $blocks = ["hero", "hero-grid","feature-bar","situation-cards","hero-image-labels","performance-section",
+"comparison-block"
+,"testimonial-block",
+"compare-block",
+"faq-block"
+];
 
 
     foreach ($blocks as $block) {

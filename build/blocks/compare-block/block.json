@@ -1,0 +1,39 @@
+{
+  "apiVersion": 3,
+  "name": "zero/compare-block",
+  "title": "Before & After Comparison",
+  "category": "widgets",
+  "icon": {
+    "src": "fa-solid fa-arrows-left-right"
+  },
+  "description": "A comparison block showing before and after experiences.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "This is a before and after comparison block"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Subtitle goes here"
+    },
+    "items": {
+      "type": "array",
+      "default": []
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Button"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "#"
+    }
+  },
+  "editorScript": "ztb-blocks-js",
+  "editorStyle": "ztb-blocks-css",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

@@ -1,0 +1,61 @@
+{
+  "apiVersion": 3,
+  "name": "zero/comparison-block",
+  "title": "Comparison Block",
+  "category": "design",
+  "icon": "feedback",
+  "description": "Voor en na vergelijkingsblok (Anderen vs Stan&Wende)",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Dit is een voor en na vergelijkingsblok"
+    },
+    "leftTitle": {
+      "type": "string",
+      "default": "Anderen"
+    },
+    "rightTitle": {
+      "type": "string",
+      "default": "Stan&Wende"
+    },
+    "leftItems": {
+      "type": "array",
+      "default": []
+    },
+    "leftIcons": {
+      "type": "array",
+      "default": []
+    },
+    "rightItems": {
+      "type": "array",
+      "default": []
+    },
+    "rightIcons": {
+      "type": "array",
+      "default": []
+    },
+    "extraText": {
+      "type": "string",
+      "default": "Hier is plaats voor extra tekst om drempels bij de CTA weg te nemen."
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Button"
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "#E4ECE5"
+    }
+  },
+  "supports": {
+    "align": true,
+    "spacing": {
+      "padding": true,
+      "margin": true
+    }
+  },
+  "editorScript": "ztb-blocks-js",
+  "editorStyle": "ztb-blocks-css",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

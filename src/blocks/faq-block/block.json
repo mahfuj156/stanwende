@@ -26,6 +26,25 @@
     "buttonUrl": {
       "type": "string",
       "default": "#"
+    },
+    "buttonText2": {
+      "type": "string",
+      "default": "Bekijk alle vragen"
+    },
+    "buttonUrl2": {
+      "type": "string",
+      "default": "#"
+    },
+     "clientName": {
+      "type": "string",
+      "default": "Alex de Vries"
+    },
+     "clientImage": {
+      "type": "object",
+      "default": {
+        "url": "",
+        "alt": ""
+      }
     }
   },
   "editorScript": "ztb-blocks-js",

@@ -64,6 +64,15 @@
         display: none;
     }
 
+   .faq-button-shadow {
+        background: #0608060D;
+        box-shadow: 0px 1px 2px 0px #0608060D,
+        0px -2px 1px 0px #0608060D inset,
+        0px 0px 0px 1px #0608060D inset;
+
+
+    }
+
 @media (min-width: 768px) {
     .md-hidden-custom { 
         display: none !important;

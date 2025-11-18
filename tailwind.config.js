@@ -35,7 +35,7 @@ content: [ "./src/**/*.{js,jsx}", "./src/blocks/**/*.{js,jsx}", "./**/*.php",
         "white": "#FFFFFF",
         "gold": "#DC7B30",
         "green-1": "#587D5C",
-        "warning": "#B06226",
+        "warning": "#B06226", 
  
         "primary": "#6F9D74",
         "secondary": "#212F22",

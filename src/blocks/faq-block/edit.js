@@ -1,9 +1,28 @@
 import { Fragment } from "@wordpress/element";
-import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
-import { PanelBody, TextControl, TextareaControl, Button } from "@wordpress/components";
+import {
+    InspectorControls,
+    useBlockProps,
+    MediaUpload,
+    MediaUploadCheck
+} from "@wordpress/block-editor";
+import {
+    PanelBody,
+    TextControl,
+    TextareaControl,
+    Button
+} from "@wordpress/components";
 
 export default function Edit({ attributes, setAttributes }) {
-    const { title = "", items = [], buttonText = "", buttonUrl = "" } = attributes;
+    const {
+        title,
+        items = [],
+        buttonText,
+        buttonUrl,
+        buttonText2,
+        buttonUrl2,
+        clientName,
+        clientImage
+    } = attributes;
 
     const faqList = Array.isArray(items) ? items : [];
 
@@ -32,25 +51,72 @@ export default function Edit({ attributes, setAttributes }) {
     return (
         <Fragment>
             <InspectorControls>
+                {/* FAQ BLOCK SETTINGS */}
                 <PanelBody title="FAQ Block Settings" initialOpen={true}>
                     <TextControl
                         label="Title"
                         value={title}
                         onChange={(value) => setAttributes({ title: value })}
                     />
+
                     <TextControl
-                        label="Button Text"
+                        label="Button 1 Text"
                         value={buttonText}
                         onChange={(value) => setAttributes({ buttonText: value })}
                     />
                     <TextControl
-                        label="Button URL"
+                        label="Button 1 URL"
                         value={buttonUrl}
                         onChange={(value) => setAttributes({ buttonUrl: value })}
                     />
+
+                    <TextControl
+                        label="Button 2 Text"
+                        value={buttonText2}
+                        onChange={(value) => setAttributes({ buttonText2: value })}
+                    />
+                    <TextControl
+                        label="Button 2 URL"
+                        value={buttonUrl2}
+                        onChange={(value) => setAttributes({ buttonUrl2: value })}
+                    />
                 </PanelBody>
 
-                <PanelBody title="FAQ Items" initialOpen={true}>
+                {/* CLIENT INFO */}
+                <PanelBody title="Client Section" initialOpen={false}>
+                    <TextControl
+                        label="Client Name"
+                        value={clientName}
+                        onChange={(value) => setAttributes({ clientName: value })}
+                    />
+
+                    <MediaUploadCheck>
+                        <MediaUpload
+                            onSelect={(media) =>
+                                setAttributes({
+                                    clientImage: { url: media.url, alt: media.alt }
+                                })
+                            }
+                            allowedTypes={["image"]}
+                            render={({ open }) => (
+                                <Button onClick={open} variant="secondary" className="mt-3">
+                                    {clientImage?.url ? "Change Client Image" : "Upload Client Image"}
+                                </Button>
+                            )}
+                        />
+                    </MediaUploadCheck>
+
+                    {clientImage?.url && (
+                        <img
+                            src={clientImage.url}
+                            alt={clientImage.alt}
+                            style={{ width: "80px", height: "80px", borderRadius: "50%", marginTop: "10px" }}
+                        />
+                    )}
+                </PanelBody>
+
+                {/* FAQ LIST */}
+                <PanelBody title="FAQ Items" initialOpen={false}>
                     {faqList.map((item, index) => (
                         <div
                             key={index}
@@ -94,7 +160,7 @@ export default function Edit({ attributes, setAttributes }) {
                 </PanelBody>
             </InspectorControls>
 
-            {/* Editor preview */}
+            {/* EDITOR PREVIEW */}
             <section {...blockProps}>
                 <h2 className="text-2xl font-bold text-center mb-6">{title}</h2>
 

@@ -1,0 +1,33 @@
+{
+  "apiVersion": 3,
+  "name": "zero/blog-cards",
+  "title": "Blog Cards",
+  "category": "widgets",
+  "icon": {
+    "src": "fa-solid fa-newspaper"
+  },
+  "description": "Display blog posts dynamically in a 3-card grid.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "title": { "type": "string", "default": "" },
+    "metatitle": { "type": "string", "default": "" },
+    "subtitle": { "type": "string", "default": "" },
+    "category": {
+      "type": "string",
+      "default": ""
+    },
+    "numberOfPosts": {
+      "type": "number",
+      "default": 6
+    },
+     "order": { "type": "string", "default": "DESC" },
+     "buttonText": { "type": "string", "default": true },
+     "buttonUrl": { "type": "string", "default": true }
+  },
+  "editorScript": "blog-cards-js",
+  "editorStyle": "blog-cards-css",
+  "style": "blog-cards-css",
+  "render": "file:./render.php"
+}

@@ -12,10 +12,9 @@ $items      = $attributes['items'] ?? [];
             <?= wp_kses_post($title); ?>
         </h2>
 
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12  gap-y-12 items-stretch">
+        <div class="columns-1 sm:columns-2 md:columns-3 gap-x-12  gap-y-12 items-stretch">
             <?php foreach ($items as $item): ?>
-                <div class="bg-white rounded-xl p-6 mb-6 shadow flex flex-col h-full">
+                <div class="bg-white rounded-xl p-6 mb-12 shadow flex flex-col h-full after-beforeblock">
                     <!-- avatar and name inline, centered -->
                     <div class="text-center mb-4" style="    margin-top: -46px;">
                         <span class="inline-flex items-center bg-white px-4 py-1 rounded-full font-semibold text-lg">
@@ -29,11 +28,11 @@ $items      = $attributes['items'] ?? [];
                     </div>
 
                     <div class="text-info text-p18 leading-140 mt-2">
-                        <p class="text-warning  text-p16 font-bold leading-150 mb-3">
+                        <p class="text-warning  text-p16   leading-150 mb-3">
                             <i class="fa-regular fa-circle-xmark mr-2"></i>
                             <?= wp_kses_post($item['before']); ?>
                         </p>
-                        <p class="text-info text-p16 font-bold leading-150">
+                        <p class="text-info text-p16   leading-150">
                             <i class="fa-regular fa-circle-check mr-2"></i>
                             <?= wp_kses_post($item['after']); ?>
                         </p>

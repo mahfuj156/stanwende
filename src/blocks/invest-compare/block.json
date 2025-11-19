@@ -1,0 +1,33 @@
+{
+  "apiVersion": 3,
+  "name": "zero/invest-compare",
+  "title": "Invest Compare Table",
+  "category": "widgets",
+  "icon": {
+    "src": "fa-solid fa-table"
+  },
+  "description": "4-column comparison table with icon headers and check/cross/text rows",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "title": { "type": "string", "default": "" },
+    "subtitle": { "type": "string", "default": "" },
+    "columns": {
+      "type": "array",
+      "default": [
+        { "icon": "", "title": "", "subtitle": "", "buttonText": "", "buttonUrl": "" },
+        { "icon": "", "title": "", "subtitle": "", "buttonText": "", "buttonUrl": "" },
+        { "icon": "", "title": "", "subtitle": "", "buttonText": "", "buttonUrl": "" }
+      ]
+    },
+    "rows": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "editorScript": "ztb-blocks-js",
+  "editorStyle": "ztb-blocks-css",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

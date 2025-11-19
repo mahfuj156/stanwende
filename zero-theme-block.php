@@ -89,6 +89,21 @@ function ztb_enqueue_swiper() {
 add_action('wp_enqueue_scripts', 'ztb_enqueue_swiper');
 
 
+function ztb_add_inline_styles() {
+    $icon_url = plugins_url('src/uploads/arrow-icon.png', __FILE__);
+
+    $css = "
+      .after-beforeblock::after { 
+        background-image: url('{$icon_url}'); 
+      }
+    ";
+
+    wp_add_inline_style('ztb-blocks-css', $css);
+}
+add_action('wp_enqueue_scripts', 'ztb_add_inline_styles');
+add_action('enqueue_block_editor_assets', 'ztb_add_inline_styles');
+
+
 // Auto-load all blocks (block.json)
 add_action("init", function () {
 
@@ -96,7 +111,9 @@ add_action("init", function () {
 "comparison-block"
 ,"testimonial-block",
 "compare-block",
-"faq-block"
+"faq-block",
+"blog-cards",
+"invest-compare"
 ];
 
 
@@ -104,3 +121,5 @@ add_action("init", function () {
         register_block_type(__DIR__ . "/src/blocks/$block");
     }
 });
+
+ 

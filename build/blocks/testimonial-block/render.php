@@ -28,9 +28,9 @@ $items      = $attributes['testimonials'] ?? [];
         </div>
 
         <!-- Testimonials Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
                 <?php foreach ($items as $index => $item): ?>
-                    <div class="bg-white rounded-xl p-6 shadow flex flex-col h-full">
+                    <div class="bg-white rounded-xl p-8 shadow flex flex-col h-full">
                         
                         <!-- Rating -->
                         <div class="flex text-h22 text-gold mb-3">
@@ -56,7 +56,7 @@ $items      = $attributes['testimonials'] ?? [];
                             </p>
 
                             <?php if ($has_more): ?>
-                                <button class="text-primary less-more-btn" onclick="toggleText(<?= $index; ?>)">Lees meer</button>
+                                <button class="text-primary display-inline less-more-btn" onclick="toggleText(<?= $index; ?>)">Lees meer</button>
                             <?php endif; ?>
                         <!-- Footer -->
                         <div class="flex items-center mt-auto">

@@ -73,6 +73,30 @@
 
     }
 
+   .light-gray-btn {
+        
+        border: 1px solid   #FFFFFF00;    
+        box-shadow: 0px 32px 24px 0px #FFFFFF00 inset; 
+        background:  #0608060D;
+
+    }
+
+ .after-beforeblock{
+    position: relative;
+ 
+ }
+.after-beforeblock:after {
+    background-repeat: no-repeat;
+    background-size: cover;
+    content: "";
+    display: inline-block;
+    height: 33px;
+    right: -15px;
+    top: 37%;
+    vertical-align: middle;
+    width: 32px;
+    position: absolute;
+}
 @media (min-width: 768px) {
     .md-hidden-custom { 
         display: none !important;

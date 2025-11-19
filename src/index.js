@@ -8,3 +8,5 @@
  import "./blocks/testimonial-block";
  import "./blocks/compare-block";
  import "./blocks/faq-block";
+ import "./blocks/invest-compare";
+ import "./blocks/blog-cards";

@@ -1,3 +1,5 @@
+const CopyPlugin = require('copy-webpack-plugin');
+
 module.exports = {
 content: [ "./src/**/*.{js,jsx}", "./src/blocks/**/*.{js,jsx}", "./**/*.php",
    "./wp-content/plugins/zero-theme-block/**/*.php",
@@ -132,8 +134,14 @@ content: [ "./src/**/*.{js,jsx}", "./src/blocks/**/*.{js,jsx}", "./**/*.php",
     "text-info",
     "text-warning",
     "828382",
-    "green-1",
+    "text-green-1",
   ],
 
-  plugins: [],
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: 'src/uploads', to: 'uploads' }
+      ],
+    }),
+  ],
 };

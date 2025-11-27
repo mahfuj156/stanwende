@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "zero/invest-compare",
-  "title": "Invest Compare Table",
+  "title": "SWende Invest Compare Table",
   "category": "widgets",
   "icon": {
     "src": "fa-solid fa-table"

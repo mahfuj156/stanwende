@@ -5,11 +5,14 @@ import {
     MediaUpload,
     MediaUploadCheck
 } from "@wordpress/block-editor";
+
 import {
     PanelBody,
     TextControl,
     TextareaControl,
-    Button
+    Button,
+    SelectControl,
+    RangeControl
 } from "@wordpress/components";
 
 export default function Edit({ attributes, setAttributes }) {
@@ -21,25 +24,31 @@ export default function Edit({ attributes, setAttributes }) {
         buttonText2,
         buttonUrl2,
         clientName,
-        clientImage
+        clientImage = {},
+        sectionClass,
+        sectionColor,
+        paddingTop,
+        maxContainerWidth,
+        paddingBottom,
+        sectionMarginTop,
+        clientLayout,
+        columns
     } = attributes;
 
-    const faqList = Array.isArray(items) ? items : [];
-
     const updateItem = (index, field, value) => {
-        const updated = [...faqList];
+        const updated = [...items];
         updated[index] = { ...(updated[index] || {}), [field]: value };
         setAttributes({ items: updated });
     };
 
     const addItem = () => {
         setAttributes({
-            items: [...faqList, { question: "", answer: "" }]
+            items: [...items, { question: "", answer: "" }]
         });
     };
 
     const removeItem = (index) => {
-        const updated = [...faqList];
+        const updated = [...items];
         updated.splice(index, 1);
         setAttributes({ items: updated });
     };
@@ -51,55 +60,54 @@ export default function Edit({ attributes, setAttributes }) {
     return (
         <Fragment>
             <InspectorControls>
-                {/* FAQ BLOCK SETTINGS */}
+
+                {/* GENERAL SETTINGS */}
                 <PanelBody title="FAQ Block Settings" initialOpen={true}>
                     <TextControl
                         label="Title"
                         value={title}
-                        onChange={(value) => setAttributes({ title: value })}
+                        onChange={(v) => setAttributes({ title: v })}
                     />
 
                     <TextControl
                         label="Button 1 Text"
                         value={buttonText}
-                        onChange={(value) => setAttributes({ buttonText: value })}
+                        onChange={(v) => setAttributes({ buttonText: v })}
                     />
                     <TextControl
                         label="Button 1 URL"
                         value={buttonUrl}
-                        onChange={(value) => setAttributes({ buttonUrl: value })}
+                        onChange={(v) => setAttributes({ buttonUrl: v })}
                     />
 
                     <TextControl
                         label="Button 2 Text"
                         value={buttonText2}
-                        onChange={(value) => setAttributes({ buttonText2: value })}
+                        onChange={(v) => setAttributes({ buttonText2: v })}
                     />
                     <TextControl
                         label="Button 2 URL"
                         value={buttonUrl2}
-                        onChange={(value) => setAttributes({ buttonUrl2: value })}
+                        onChange={(v) => setAttributes({ buttonUrl2: v })}
                     />
                 </PanelBody>
 
-                {/* CLIENT INFO */}
+                {/* CLIENT SECTION */}
                 <PanelBody title="Client Section" initialOpen={false}>
                     <TextControl
                         label="Client Name"
                         value={clientName}
-                        onChange={(value) => setAttributes({ clientName: value })}
+                        onChange={(v) => setAttributes({ clientName: v })}
                     />
 
                     <MediaUploadCheck>
                         <MediaUpload
                             onSelect={(media) =>
-                                setAttributes({
-                                    clientImage: { url: media.url, alt: media.alt }
-                                })
+                                setAttributes({ clientImage: { url: media.url, alt: media.alt } })
                             }
                             allowedTypes={["image"]}
                             render={({ open }) => (
-                                <Button onClick={open} variant="secondary" className="mt-3">
+                                <Button onClick={open} variant="secondary">
                                     {clientImage?.url ? "Change Client Image" : "Upload Client Image"}
                                 </Button>
                             )}
@@ -107,77 +115,115 @@ export default function Edit({ attributes, setAttributes }) {
                     </MediaUploadCheck>
 
                     {clientImage?.url && (
-                        <img
-                            src={clientImage.url}
-                            alt={clientImage.alt}
-                            style={{ width: "80px", height: "80px", borderRadius: "50%", marginTop: "10px" }}
-                        />
+                        <img src={clientImage.url} alt={clientImage.alt} className="mt-3 h-20 w-20 rounded-full" />
                     )}
                 </PanelBody>
 
-                {/* FAQ LIST */}
+                {/* FAQ ITEMS */}
                 <PanelBody title="FAQ Items" initialOpen={false}>
-                    {faqList.map((item, index) => (
-                        <div
-                            key={index}
-                            style={{
-                                padding: "12px",
-                                border: "1px solid #ddd",
-                                borderRadius: "8px",
-                                marginBottom: "12px",
-                                background: "#fafafa"
-                            }}
-                        >
+                    {items.map((item, index) => (
+                        <div key={index} className="p-3 border rounded bg-white mb-3">
                             <TextControl
                                 label="Question"
                                 value={item.question}
-                                onChange={(value) => updateItem(index, "question", value)}
+                                onChange={(v) => updateItem(index, "question", v)}
                             />
 
                             <TextareaControl
                                 label="Answer"
                                 value={item.answer}
-                                onChange={(value) => updateItem(index, "answer", value)}
+                                onChange={(v) => updateItem(index, "answer", v)}
                             />
 
-                            <Button
-                                isDestructive
-                                onClick={() => removeItem(index)}
-                                style={{ marginTop: "8px" }}
-                            >
+                            <Button isDestructive onClick={() => removeItem(index)} className="mt-2">
                                 Remove FAQ
                             </Button>
                         </div>
                     ))}
 
-                    <Button
-                        variant="primary"
-                        onClick={addItem}
-                        style={{ width: "100%", marginTop: "10px" }}
-                    >
+                    <Button variant="primary" onClick={addItem} className="w-full">
                         Add FAQ
                     </Button>
                 </PanelBody>
+
+                {/* STYLE SETTINGS */}
+                <PanelBody title="Styles" initialOpen={false}>
+                    <TextControl
+                        label="Background Color"
+                        value={sectionColor}
+                        onChange={(v) => setAttributes({ sectionColor: v })}
+                    />
+
+                    <TextControl
+                        label="Section Classes"
+                        value={sectionClass}
+                        onChange={(v) => setAttributes({ sectionClass: v })}
+                    />
+                    <TextControl
+                        label="Max Container Width Classes"
+                        value={maxContainerWidth}
+                        onChange={(v) => setAttributes({ maxContainerWidth: v })}
+                    />
+
+                    <TextControl
+                        label="Margin Top (px)"
+                        value={sectionMarginTop}
+                        onChange={(v) => setAttributes({ sectionMarginTop: v })}
+                    />
+
+                    <RangeControl
+                        label="Padding Top (rem)"
+                        value={paddingTop}
+                        onChange={(v) => setAttributes({ paddingTop: v })}
+                        min={0}
+                        max={10}
+                    />
+
+                    <RangeControl
+                        label="Padding Bottom (rem)"
+                        value={paddingBottom}
+                        onChange={(v) => setAttributes({ paddingBottom: v })}
+                        min={0}
+                        max={10}
+                    />
+
+                    <SelectControl
+                        label="Columns"
+                        value={columns}
+                        options={[
+                            { label: "1 Column", value: 1 },
+                            { label: "2 Columns", value: 2 },
+                            { label: "3 Columns", value: 3 },
+                            { label: "4 Columns", value: 4 }
+                        ]}
+                        onChange={(v) => setAttributes({ columns: parseInt(v) })}
+                    />
+                    <SelectControl
+                        label="Client Layout"
+                        value={clientLayout}
+                        options={[
+                            { label: "Stacked", value: "stacked" },
+                            { label: "Inline", value: "inline" }
+                        ]}
+                        onChange={(v) => setAttributes({ clientLayout: v })}
+                    />
+                </PanelBody>
             </InspectorControls>
 
-            {/* EDITOR PREVIEW */}
+            {/* Preview inside editor */}
             <section {...blockProps}>
                 <h2 className="text-2xl font-bold text-center mb-6">{title}</h2>
 
                 <div className="space-y-3">
-                    {faqList.map((item, index) => (
-                        <div key={index} className="p-4 bg-white border rounded-lg shadow-sm">
-                            <p className="font-semibold text-lg">
-                                {item.question || "Question…"}
-                            </p>
-                            <p className="text-gray-600 mt-2">
-                                {item.answer || "Answer…"}
-                            </p>
+                    {items.map((item, index) => (
+                        <div key={index} className="p-4 bg-white rounded shadow">
+                            <strong>{item.question || "Question…"}</strong>
+                            <p className="text-gray-600">{item.answer || "Answer…"}</p>
                         </div>
                     ))}
                 </div>
 
-                <p className="text-center text-sm mt-6 text-gray-500">
+                <p className="text-center mt-6 text-gray-500">
                     FAQ preview — edit content in the sidebar.
                 </p>
             </section>

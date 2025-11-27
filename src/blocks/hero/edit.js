@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n';
+
 import {
     InspectorControls,
     MediaUpload,
@@ -10,7 +12,8 @@ import {
     TextControl,
     TextareaControl,
     Button,
-    SelectControl
+    SelectControl,
+    RangeControl
 } from "@wordpress/components";
 
 import { Fragment } from "@wordpress/element";
@@ -23,12 +26,18 @@ export default function Edit({ attributes, setAttributes }) {
         bulletIcons = [],
         buttonPrimary = "",
         buttonSecondary = "",
+        buttonPrimaryUrl = "",
+        buttonSecondaryUrl = "",
         images = [],
         sectionClass = "",
+        sectionColor = "",
         styleType = "light",
         imagePosition = "right",
         bulletListClass = "list-disc pl-5 space-y-2",
-        bulletItemClass = ""
+        bulletItemClass = "",
+        paddingTop = 0,
+        paddingBottom = 0,
+        titleFontSize = "46",
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -105,15 +114,27 @@ export default function Edit({ attributes, setAttributes }) {
                         </div>
                     ))}
                     <Button isPrimary onClick={addBullet}>Add Bullet</Button>
+
+                    
                     <TextControl
                         label="Primary Button Text"
                         value={buttonPrimary}
                         onChange={(v) => setAttributes({ buttonPrimary: v })}
                     />
                     <TextControl
+                        label="Primary Button Text"
+                        value={buttonPrimaryUrl}
+                        onChange={(v) => setAttributes({ buttonPrimaryUrl: v })}
+                    />
+                    <TextControl
                         label="Secondary Button Text"
                         value={buttonSecondary}
                         onChange={(v) => setAttributes({ buttonSecondary: v })}
+                    />
+                    <TextControl
+                        label="Secondary Button Text"
+                        value={buttonSecondaryUrl}
+                        onChange={(v) => setAttributes({ buttonSecondaryUrl: v })}
                     />
                 </PanelBody>
 
@@ -143,11 +164,42 @@ export default function Edit({ attributes, setAttributes }) {
 
                 {/* Style Panel */}
                 <PanelBody title="Styles" initialOpen={false}>
+
+                    <TextControl
+                        label="Section Background Color"
+                        value={sectionColor}
+                        onChange={(v) => setAttributes({ sectionColor: v })}
+                    />
+
                     <TextControl
                         label="Section Classes"
                         value={sectionClass}
                         onChange={(v) => setAttributes({ sectionClass: v })}
                     />
+
+                    <RangeControl
+                        label={__("Section Padding Top  (REM)", "zero")}
+                        value={paddingTop}
+                        onChange={(value) => setAttributes({ paddingTop: value })}
+                        min={0}
+                        max={10}
+                        />
+                        
+                    <RangeControl
+                        label={__("Section Padding Bottom (REM)", "zero")}
+                        value={paddingBottom}
+                        onChange={(value) => setAttributes({ paddingBottom: value })}
+                        min={0}
+                        max={10}
+                        />
+                    <RangeControl
+                        label={__("Title Font Size (PX)", "zero")}
+                        value={titleFontSize}
+                        onChange={(value) => setAttributes({ titleFontSize: value })}
+                        min={10}
+                        max={100}
+                        />
+
                     <SelectControl
                         label="Hero Style"
                         value={styleType}
@@ -174,34 +226,39 @@ export default function Edit({ attributes, setAttributes }) {
 
             {/* Block Preview */}
             <div {...blockProps}>
-                <div className={`grid grid-cols-1 md:grid-cols-2 gap-12 ${styleType === "dark" ? "bg-gray-900 text-white p-10 rounded-xl" : ""}`}>
-                    
-                    {/* Left Column */}
-                    <div className={`${imagePosition === "left" ? "order-last md:order-first" : ""}`}>
-                        <h1 className="text-5xl font-bold">{heading}</h1>
-                        <p className="mt-6 text-lg">{subheading}</p>
 
-                        <ul className={bulletListClass}>
-                            {bullets.map((b, i) => (
-                                <li key={i} className={bulletItemClass}>
-                                    {bulletIcons[i] && <i className={bulletIcons[i]}></i>} {b}
-                                </li>
-                            ))}
-                        </ul>
+                <div 
+  className="flex flex-col md:flex-row gap-12" 
+  style={{ paddingTop: `${paddingTop}rem`, paddingBottom: `${paddingBottom}rem`, backgroundColor: sectionColor }}
+>
 
-                        <div className="mt-8 flex gap-4">
-                            <button className="px-6 py-3 bg-green-600 text-white rounded-lg">{buttonPrimary}</button>
-                            <button className="px-6 py-3 bg-gray-200 rounded-lg">{buttonSecondary}</button>
-                        </div>
-                    </div>
+    {/* LEFT COLUMN */}
+                <div className={`${imagePosition === "left" ? "order-last md:order-first" : ""} flex-1`}>
+                    <h1 className="text-5xl font-bold">{heading}</h1>
+                    <p className="mt-6 text-lg">{subheading}</p>
 
-                    {/* Right Column */}
-                    <div className={`grid grid-cols-2 gap-4 ${imagePosition === "left" ? "order-first md:order-last" : ""}`}>
-                        {images.map((img, i) => (
-                            <img key={i} src={img.url} className="rounded-xl object-cover" />
+                    <ul className={bulletListClass}>
+                        {bullets.map((b, i) => (
+                            <li key={i} className={bulletItemClass}>
+                                {bulletIcons[i] && <i className={bulletIcons[i]}></i>} {b}
+                            </li>
                         ))}
+                    </ul>
+
+                    <div className="mt-8 flex gap-4">
+                        <button className="px-6 py-3 bg-green-600 text-white rounded-lg">{buttonPrimary}</button>
+                        <button className="px-6 py-3 bg-gray-200 rounded-lg">{buttonSecondary}</button>
                     </div>
                 </div>
+
+                {/* RIGHT COLUMN */}
+                <div className={`${imagePosition === "left" ? "order-first md:order-last" : ""} flex-1 grid grid-cols-2 gap-4`}>
+                    {images.map((img, i) => (
+                        <img key={i} src={img.url} className="rounded-xl object-cover" />
+                    ))}
+                </div>
+
+            </div>
             </div>
         </Fragment>
     );

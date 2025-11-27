@@ -10,3 +10,6 @@
  import "./blocks/faq-block";
  import "./blocks/invest-compare";
  import "./blocks/blog-cards";
+ import "./blocks/investment-selector";
+ import "./blocks/timeline";
+ import "./blocks/calculator";

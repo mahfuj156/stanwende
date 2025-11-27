@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "zero/blog-cards",
-  "title": "Blog Cards",
+  "title": "SWende Blog Cards",
   "category": "widgets",
   "icon": {
     "src": "fa-solid fa-newspaper"

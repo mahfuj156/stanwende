@@ -1,0 +1,62 @@
+{
+  "apiVersion": 3,
+  "name": "zero/timeline",
+  "title": "SWende Timeline Block",
+  "category": "widgets",
+  "icon": "ellipsis",
+  "description": "Left-to-right horizontal timeline.",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Hoe werkt de <span style='color: #6F9D74'> [productnaam]?</span>"
+    },
+    "steps": {
+      "type": "array",
+      "default": []
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Button"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "#"
+    },
+    "bottomLabels": {
+      "type": "array",
+      "default": [
+        "BezwaaR wegnemen",
+        "Drempel verlagen",
+        "Twijfel wegnemen"
+      ]
+    },
+    "sectionClass": {
+      "type": "string",
+      "default": "  mx-auto py-10 bg-white rounded-xl shadow-sm"
+    },
+    "sectionBGColor": {
+      "type": "string",
+      "default": "#FFFFFF"
+    },
+    "paddingTop": {
+      "type": "number",
+      "default": 6
+    },
+    "paddingBottom": {
+      "type": "number",
+      "default": 6
+    },
+    "sectionMarginTop": {
+      "type": "string",
+      "default": "0"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": true
+  },
+  "editorScript": "ztb-blocks-js",
+  "editorStyle": "ztb-blocks-css",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

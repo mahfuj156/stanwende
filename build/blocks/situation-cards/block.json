@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "zero/situation-cards",
-  "title": "Situation Cards",
+  "title": "SWende Situation Cards",
   "category": "design",
   "icon": "welcome-view-site",
   "attributes": {
@@ -37,6 +37,26 @@
           "url": ""
         }
       ]
+    },
+    "sectionColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "paddingTop": {
+      "type": "number",
+      "default": 6
+    },
+    "paddingBottom": {
+      "type": "number",
+      "default": 6
+    },
+    "titleFontSize": {
+      "type": "number",
+      "default": 46
+    },
+    "subtitleFontSize": {
+      "type": "number",
+      "default": 16
     }
   },
   "editorScript": "ztb-blocks-js",

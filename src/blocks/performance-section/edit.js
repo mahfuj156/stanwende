@@ -13,31 +13,69 @@ import {
   PanelBody,
   Button,
   TextControl,
-  TextareaControl
+  TextareaControl,
+  RangeControl,
+  SelectControl
 } from '@wordpress/components';
 import { Fragment } from '@wordpress/element';
 
 export default function Edit({ attributes, setAttributes }) {
   const {
     title,
+    subtitle,
     eyebrow,
     description,
     stat1,
     stat1_label,
     stat2,
     stat2_label,
-    chartUrl,
-    bgColor
+    chartUrl, 
+    buttonText,
+    buttonUrl,
+    secondaryButtonText,
+    secondaryButtonUrl,
+    sectionColor, paddingTop, paddingBottom, titleFontSize, subtitleFontSize,
+    maxContainerWidth,
+    columns,
+    imagePosition,
+     bullets = [],
+
+
   } = attributes;
 
   const blockProps = useBlockProps({
     className: `rounded-xl p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start`,
-    style: { backgroundColor: bgColor }
+    style: { backgroundColor: sectionColor || 'transparent', paddingTop: `${paddingTop}rem`, paddingBottom: `${paddingBottom}rem` }
   });
 
   const onSelectImage = (media) => {
     setAttributes({ chartUrl: media?.url || '' });
   };
+
+
+    // ----- BULLETS -----
+    const addBullet = () => {
+        setAttributes({ 
+            bullets: [...bullets, ""],
+            bulletIcons: [...bulletIcons, "fas fa-check"] // default icon
+        });
+    };
+
+    const updateBullet = (index, value) => {
+        const newBullets = [...bullets];
+        newBullets[index] = value;
+        setAttributes({ bullets: newBullets });
+    };
+
+    const removeBullet = (index) => {
+        const newBullets = [...bullets];
+        const newIcons = [...bulletIcons];
+        newBullets.splice(index, 1);
+        newIcons.splice(index, 1);
+        setAttributes({ bullets: newBullets, bulletIcons: newIcons });
+    };
+
+
 
   return (
     <Fragment>
@@ -53,12 +91,40 @@ export default function Edit({ attributes, setAttributes }) {
             value={title}
             onChange={(v) => setAttributes({ title: v })}
           />
+          <TextControl
+            label={__('Subtitle', 'zero')}
+            value={subtitle}
+            onChange={(v) => setAttributes({ subtitle: v })}
+          />
           <TextareaControl
             label={__('Description', 'zero')}
             value={description}
             onChange={(v) => setAttributes({ description: v })}
           />
         </PanelBody>
+
+
+   <h4 className="mt-4">Bullet Points</h4>
+                   {bullets.map((b, i) => (
+                        <div key={i} className="mb-2">
+                            <TextareaControl
+                                label={`Bullet ${i + 1}`}
+                                value={b}
+                                onChange={(v) => updateBullet(i, v)}
+                            />
+                            <Button 
+                                isDestructive 
+                                onClick={() => removeBullet(i)} 
+                                className="mt-1"
+                            >
+                                Remove
+                            </Button>
+                        </div>
+                    ))}
+                    <Button isPrimary onClick={addBullet}>Add Bullet</Button>
+
+                    
+
 
         <PanelBody title={__('Stats', 'zero')} initialOpen={false}>
           <TextControl
@@ -105,21 +171,89 @@ export default function Edit({ attributes, setAttributes }) {
           </MediaUploadCheck>
         </PanelBody>
 
-        <PanelColorSettings
-          title={ __('Background color', 'zero') }
-          initialOpen={ false }
-          colorSettings={[
-            {
-              value: bgColor,
-              onChange: (value) => setAttributes({ bgColor: value }),
-              label: __('Background color', 'zero')
-            }
-          ]}
-        />
+          <PanelBody title="Buttons" initialOpen={false}>
+          <TextareaControl label="Primary Button Text" value={buttonText} onChange={(v) => setAttributes({ buttonText: v })} />
+          <TextControl label="Primary Button URL" value={buttonUrl} onChange={(v) => setAttributes({ buttonUrl: v })} />
+
+          <TextareaControl label="Secondary Button Text" value={secondaryButtonText} onChange={(v) => setAttributes({ secondaryButtonText: v })} />
+          <TextControl label="Secondary Button URL" value={secondaryButtonUrl} onChange={(v) => setAttributes({ secondaryButtonUrl: v })} />
+        </PanelBody>
+
+         {/* Style Panel */}
+                  <PanelBody title="Styles" initialOpen={false}>
+        
+                      <TextControl
+                          label="Section Container Width (PX)"
+                          value={maxContainerWidth}
+                          onChange={(v) => setAttributes({ maxContainerWidth: v })}
+                      /> 
+                      <TextControl
+                          label="Section Background Color"
+                          value={sectionColor}
+                          onChange={(v) => setAttributes({ sectionColor: v })}
+                      /> 
+
+                       <SelectControl
+                              label="Columns on Desktop"
+                              value={attributes.columns}
+                              options={[
+                                  { label: '1 Columns', value: 1 },
+                                  { label: '2 Columns', value: 2 },
+                                  { label: '3 Columns', value: 3 }
+                              ]}
+                              onChange={(value) => setAttributes({ columns: parseInt(value) })}
+                          />
+                          
+        
+                      <RangeControl
+                          label={__("Section Padding Top  (REM)", "zero")}
+                          value={paddingTop}
+                          onChange={(value) => setAttributes({ paddingTop: value })}
+                          min={0}
+                          max={10}
+                          />
+                          
+                      <RangeControl
+                          label={__("Section Padding Bottom (REM)", "zero")}
+                          value={paddingBottom}
+                          onChange={(value) => setAttributes({ paddingBottom: value })}
+                          min={0}
+                          max={10}
+                          />
+                      <RangeControl
+                          label={__("Title Font Size (PX)", "zero")}
+                          value={titleFontSize}
+                          onChange={(value) => setAttributes({ titleFontSize: value })}
+                          min={10}
+                          max={100}
+                          /> 
+                      <RangeControl
+                          label={__("Subtitle Font Size (PX)", "zero")}
+                          value={subtitleFontSize}
+                          onChange={(value) => setAttributes({ subtitleFontSize: value })}
+                          min={10}
+                          max={100}
+                          /> 
+
+                           <SelectControl
+                          label="Image Position"
+                          value={imagePosition}
+                          options={[
+                              { label: "Right", value: "right" },
+                              { label: "Left", value: "left" }
+                          ]}
+                          onChange={(v) => setAttributes({ imagePosition: v })}
+                    />
+
+                  </PanelBody>
+
+
+      
       </InspectorControls>
 
       <section {...blockProps}>
         {/* LEFT: Chart */}
+            {chartUrl ? (
         <div className="w-full md:w-1/2">
           <div className="rounded-xl bg-white p-4 h-[260px] md:h-[360px] flex items-center justify-center">
             {chartUrl ? (
@@ -129,6 +263,7 @@ export default function Edit({ attributes, setAttributes }) {
             )}
           </div>
         </div>
+            ) : null}
 
         {/* RIGHT: Content */}
         <div className="w-full md:w-1/2 space-y-6">

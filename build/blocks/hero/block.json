@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "zero/hero",
-  "title": "Hero Section",
+  "title": "SWende Hero Section",
   "category": "design",
   "icon": "slides",
   "attributes": {
@@ -21,7 +21,15 @@
       "type": "string",
       "default": ""
     },
+    "buttonPrimaryUrl": {
+      "type": "string",
+      "default": ""
+    },
     "buttonSecondary": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonSecondaryUrl": {
       "type": "string",
       "default": ""
     },
@@ -40,6 +48,26 @@
     "bulletItemClass": {
       "type": "string",
       "default": "text-lg flex items-start gap-2"
+    },
+    "imagePosition": {
+      "type": "string",
+      "default": "right"
+    },
+    "sectionColor": {
+      "type": "string",
+      "default": "#F3F7F4"
+    },
+    "paddingTop": {
+      "type": "number",
+      "default": 6
+    },
+    "paddingBottom": {
+      "type": "number",
+      "default": 6
+    },
+    "titleFontSize": {
+      "type": "number",
+      "default": 46
     },
     "styleType": {
       "type": "string",

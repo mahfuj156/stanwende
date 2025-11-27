@@ -21,7 +21,7 @@ $posts = new WP_Query($args);
 if ($posts->have_posts()) :
 ?>
 
-    <section class="py-20 bg-bg3">
+    <section class="py-20 bg-bg3 scroll-animate scroll-hidden">
         <div class="max-w-container-wide mx-auto px-4">
 
           <!-- Title -->
@@ -48,7 +48,7 @@ if ($posts->have_posts()) :
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-12">
                 <?php while ($posts->have_posts()) : $posts->the_post(); ?>
 
-                    <article class="bg-white rounded-lg border border-gray-100 hover:shadow-md transition flex flex-col">
+                    <article class="bg-white rounded-lg border border-gray-100 hover:shadow-md transition flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-xl">
   <?php
                     $categories = get_the_category();
                     $primaryCat = $categories ? $categories[0]->name : '';
@@ -79,7 +79,7 @@ if ($posts->have_posts()) :
             
             <div class="flex justify-center mb-10 mt-16">
                             
-                            <a href="<?= esc_url($buttonUrl); ?>"    class="inline-block faq-button-shadow px-6 py-3 text-p16 font-semibold no-underline rounded-12 shadow-sm"
+                            <a href="<?= esc_url($buttonUrl); ?>"    class="inline-block faq-button-shadow  hover:bg-green-1 hover:text-white px-6 py-3 text-p16 font-semibold no-underline rounded-12 shadow-sm"
 ><?= esc_html($buttonText); ?></a>
  
            </div>

@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n';
+
 import { 
   useBlockProps, 
   InspectorControls 
@@ -7,13 +9,14 @@ import {
   PanelBody, 
   TextControl, 
   TextareaControl, 
-  Button 
+  Button, 
+  RangeControl
 } from '@wordpress/components';
 
 import { Fragment } from '@wordpress/element';
 
 export default function Edit({ attributes, setAttributes }) {
-  const { heading, subtitle, cards } = attributes;
+  const { heading, subtitle, cards, paddingTop, paddingBottom, titleFontSize,subtitleFontSize, sectionColor } = attributes;
 
   const blockProps = useBlockProps({
     className: 'max-w-7xl mx-auto px-4 py-16'
@@ -85,6 +88,49 @@ export default function Edit({ attributes, setAttributes }) {
 
           <Button isPrimary onClick={addCard}>Add Card</Button>
         </PanelBody>
+
+         {/* Style Panel */}
+                        <PanelBody title="Styles" initialOpen={false}>
+        
+                            <TextControl
+                                label="Section Background Color"
+                                value={sectionColor}
+                                onChange={(v) => setAttributes({ sectionColor: v })}
+                            />
+        
+                           
+        
+                            <RangeControl
+                                label={__("Section Padding Top  (REM)", "zero")}
+                                value={paddingTop}
+                                onChange={(value) => setAttributes({ paddingTop: value })}
+                                min={0}
+                                max={10}
+                                />
+                                
+                            <RangeControl
+                                label={__("Section Padding Bottom (REM)", "zero")}
+                                value={paddingBottom}
+                                onChange={(value) => setAttributes({ paddingBottom: value })}
+                                min={0}
+                                max={10}
+                                />
+                            <RangeControl
+                                label={__("Title Font Size (PX)", "zero")}
+                                value={titleFontSize}
+                                onChange={(value) => setAttributes({ titleFontSize: value })}
+                                min={10}
+                                max={100}
+                                /> 
+                            <RangeControl
+                                label={__("Subtitle Font Size (PX)", "zero")}
+                                value={subtitleFontSize}
+                                onChange={(value) => setAttributes({ subtitleFontSize: value })}
+                                min={10}
+                                max={100}
+                                /> 
+                        </PanelBody>
+
       </InspectorControls>
 
       <section {...blockProps}>
@@ -94,8 +140,8 @@ export default function Edit({ attributes, setAttributes }) {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {cards.map((card, index) => (
             <a
-              key={index}
-              href={card.url || '#'}
+              key={index} 
+             
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-[#FFF7EF] rounded-xl p-6 cursor-pointer hover:shadow-lg transition-shadow"

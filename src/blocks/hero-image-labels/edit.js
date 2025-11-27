@@ -1,3 +1,4 @@
+import { __ } from '@wordpress/i18n';
 import {
   useBlockProps,
   InspectorControls,
@@ -9,7 +10,8 @@ import {
   PanelBody,
   TextControl,
   TextareaControl,
-  Button
+  Button,
+  RangeControl
 } from '@wordpress/components';
 
 import { Fragment } from '@wordpress/element';
@@ -23,10 +25,13 @@ export default function Edit({ attributes, setAttributes }) {
     buttonUrl,
     secondaryButtonText,
     secondaryButtonUrl,
-    mainImage,
-    leftLabel,
-    rightLabel,
-    videoUrl
+    mainImage, 
+    videoUrl,
+    sectionColor,
+    paddingTop,
+    paddingBottom,
+    titleFontSize,
+    subtitleFontSize
   } = attributes;
 
   const blockProps = useBlockProps({
@@ -43,10 +48,10 @@ export default function Edit({ attributes, setAttributes }) {
         </PanelBody>
 
         <PanelBody title="Buttons" initialOpen={false}>
-          <TextControl label="Primary Button Text" value={buttonText} onChange={(v) => setAttributes({ buttonText: v })} />
+          <TextareaControl label="Primary Button Text" value={buttonText} onChange={(v) => setAttributes({ buttonText: v })} />
           <TextControl label="Primary Button URL" value={buttonUrl} onChange={(v) => setAttributes({ buttonUrl: v })} />
 
-          <TextControl label="Secondary Button Text" value={secondaryButtonText} onChange={(v) => setAttributes({ secondaryButtonText: v })} />
+          <TextareaControl label="Secondary Button Text" value={secondaryButtonText} onChange={(v) => setAttributes({ secondaryButtonText: v })} />
           <TextControl label="Secondary Button URL" value={secondaryButtonUrl} onChange={(v) => setAttributes({ secondaryButtonUrl: v })} />
         </PanelBody>
 
@@ -72,11 +77,50 @@ export default function Edit({ attributes, setAttributes }) {
               )}
             />
           </MediaUploadCheck>
-
-          <TextControl label="Left Label" value={leftLabel} onChange={(v) => setAttributes({ leftLabel: v })} />
-          <TextControl label="Right Label" value={rightLabel} onChange={(v) => setAttributes({ rightLabel: v })} />
+ 
           <TextControl label="Video URL (optional)" value={videoUrl} onChange={(v) => setAttributes({ videoUrl: v })} />
         </PanelBody>
+
+         {/* Style Panel */}
+          <PanelBody title="Styles" initialOpen={false}>
+
+              <TextControl
+                  label="Section Background Color"
+                  value={sectionColor}
+                  onChange={(v) => setAttributes({ sectionColor: v })}
+              /> 
+
+              <RangeControl
+                  label={__("Section Padding Top  (REM)", "zero")}
+                  value={paddingTop}
+                  onChange={(value) => setAttributes({ paddingTop: value })}
+                  min={0}
+                  max={10}
+                  />
+                  
+              <RangeControl
+                  label={__("Section Padding Bottom (REM)", "zero")}
+                  value={paddingBottom}
+                  onChange={(value) => setAttributes({ paddingBottom: value })}
+                  min={0}
+                  max={10}
+                  />
+              <RangeControl
+                  label={__("Title Font Size (PX)", "zero")}
+                  value={titleFontSize}
+                  onChange={(value) => setAttributes({ titleFontSize: value })}
+                  min={10}
+                  max={100}
+                  /> 
+              <RangeControl
+                  label={__("Subtitle Font Size (PX)", "zero")}
+                  value={subtitleFontSize}
+                  onChange={(value) => setAttributes({ subtitleFontSize: value })}
+                  min={10}
+                  max={100}
+                  /> 
+          </PanelBody>
+          
       </InspectorControls>
 
       {/* FRONT-END PREVIEW INSIDE EDITOR */}
@@ -101,17 +145,7 @@ export default function Edit({ attributes, setAttributes }) {
               <img src={mainImage} className="rounded-xl w-full object-cover" />
             )}
 
-            {leftLabel && (
-              <span className="absolute left-4 top-4 bg-white px-3 py-1 rounded shadow">
-                {leftLabel}
-              </span>
-            )}
-
-            {rightLabel && (
-              <span className="absolute right-4 top-4 bg-white px-3 py-1 rounded shadow">
-                {rightLabel}
-              </span>
-            )}
+           
 
             {videoUrl && (
               <a
@@ -119,9 +153,7 @@ export default function Edit({ attributes, setAttributes }) {
                 target="_blank"
                 className="absolute inset-0 flex items-center justify-center"
               >
-                <div className="bg-white p-4 rounded-full shadow-lg text-3xl">
-                  ▶
-                </div>
+              
               </a>
             )}
           </div>

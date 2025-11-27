@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "zero/feature-bar",
-  "title": "Feature Bar",
+  "title": "SWende Feature Bar",
   "category": "design",
   "icon": "star-filled",
   "attributes": {
@@ -16,6 +16,22 @@
     "sectionClass": {
       "type": "string",
       "default": "container mx-auto py-10 bg-white rounded-xl shadow-sm"
+    },
+    "paddingTop": {
+      "type": "number",
+      "default": 6
+    },
+    "paddingBottom": {
+      "type": "number",
+      "default": 6
+    },
+    "sectionMarginTop": {
+      "type": "string",
+      "default": "0"
+    },
+    "columns": {
+      "type": "number",
+      "default": 3
     }
   },
   "editorScript": "ztb-blocks-js",

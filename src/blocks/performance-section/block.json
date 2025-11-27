@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "zero/performance-section",
-  "title": "Performance Section",
+  "title": "SWende Performance Section",
   "category": "design",
   "icon": "chart-line",
   "description": "Chart + text section with stats and CTA buttons",
@@ -9,6 +9,10 @@
     "title": {
       "type": "string",
       "default": "Duurzaamheid en rendement gaan prima samen"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Stan&Wende is er voor de kleine en grote belegger..."
     },
     "eyebrow": {
       "type": "string",
@@ -18,6 +22,9 @@
       "type": "string",
       "default": "Er wordt vaak gedacht dat duurzaam beleggen lager rendement betekent. Niets is minder waar..."
     },
+
+    "bullets": { "type": "array", "default": [] },
+
     "stat1": {
       "type": "string",
       "default": "5,84%"
@@ -38,9 +45,51 @@
       "type": "string",
       "default": ""
     },
-    "bgColor": {
+   
+     "buttonText": {
       "type": "string",
-      "default": "#E4ECE5"
+      "default": "Over Stan&Wende"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "#"
+    },
+    "secondaryButtonText": {
+      "type": "string",
+      "default": "Plan kennismaking"
+    },
+    "secondaryButtonUrl": {
+      "type": "string",
+      "default": "#"
+    },
+     "sectionColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+      "paddingTop": {
+      "type": "number",
+      "default": 6
+    },
+     "paddingBottom": {
+      "type": "number",
+      "default": 6
+    },
+     "titleFontSize": {
+      "type": "number",
+      "default": 46
+    },
+     "subtitleFontSize": {
+      "type": "number",
+      "default": 16
+    },
+    "maxContainerWidth": {
+      "type": "number",
+      "default": 768
+    },
+    "imagePosition": { "type": "string", "default": "right" },
+     "columns": {
+        "type": "number",
+        "default": 1
     }
   },
   "supports": {
@@ -56,6 +105,8 @@
       "padding": true,
       "margin": true
     }
+    
+
   },
   "editorScript": "ztb-blocks-js",
   "editorStyle": "ztb-blocks-css",

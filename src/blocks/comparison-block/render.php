@@ -15,7 +15,7 @@ $buttonText = $attributes['buttonText'] ?? 'Button';
 $bgColor    = $attributes['bgColor'] ?? '#F3F7F4';
 
 ?>
-<section class="py-12 md:py-18 bg-bg1"  >
+<section class="py-12 md:py-18 bg-bg1 scroll-animate scroll-hidden"  >
     <div class="max-w-container-medium mx-auto px-4 md:px-6  py-8"> 
 
         <h2 class="text-h46 md:text-h46 font-bold leading-114 text-center mb-10">
@@ -60,7 +60,7 @@ $bgColor    = $attributes['bgColor'] ?? '#F3F7F4';
 
         <div class="flex justify-center mt-4"> 
               <a 
-                    class="inline-block bg-primary text-white px-5 py-3 text-p16 rounded-12 no-underline shadow-btn-primary text-center"
+                    class="inline-block bg-primary hover:bg-green-1 text-white px-5 py-3 text-p16 rounded-12 no-underline shadow-btn-primary text-center"
                     href="#"
                 >
                     <?= esc_html($buttonText); ?>

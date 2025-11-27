@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "zero/testimonial-block",
-  "title": "Testimonial Block",
+  "title": "SWende Testimonial Block",
   "category": "widgets",
   "icon": "format-chat",
   "description": "A testimonial block with title, subtitle, CTA button, and multiple testimonials.",

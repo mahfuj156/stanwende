@@ -1,0 +1,74 @@
+{
+  "apiVersion": 3,
+  "name": "zero/calculator",
+  "title": "SWende Calculator",
+  "category": "widgets",
+  "icon": "calculator",
+  "description": "Income + pension calculator layout for Gutenberg.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Ontdek je jaarruimte voor 2025"
+    },
+    "incomeLabel": {
+      "type": "string",
+      "default": "Jouw inkomen in 2024?"
+    },
+    "pensionLabel": {
+      "type": "string",
+      "default": "Heb je al pensioen opgebouwd in 2024?"
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Bereken jaarruimte"
+    },
+    "resultRoom": {
+      "type": "string",
+      "default": "6280"
+    },
+    "resultBack": {
+      "type": "string",
+      "default": "2354"
+    },
+    "incomeExample": {
+      "type": "string",
+      "default": "40000"
+    },
+    "pensionExample": {
+      "type": "string",
+      "default": "300"
+    },
+      "containerMaxWidth": {
+      "type": "number",
+      "default": 1024
+    },
+     "sectionClass": {
+      "type": "string",
+      "default": "  mx-auto py-10 bg-white rounded-xl shadow-sm"
+    },
+      "sectionBGColor": {
+      "type": "string",
+      "default": "#FFF8ED"
+    },
+
+      "paddingTop": {
+      "type": "number",
+      "default": 6
+    },
+     "paddingBottom": {
+      "type": "number",
+      "default": 6
+    },
+    "sectionMarginTop": {
+      "type": "string",
+      "default": "0"
+    }
+  },
+  "editorScript": "ztb-blocks-js",
+  "editorStyle": "ztb-blocks-css",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

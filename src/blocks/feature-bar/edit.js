@@ -1,3 +1,4 @@
+import { __ } from '@wordpress/i18n';
 import {
     InspectorControls,
     MediaUpload,
@@ -9,14 +10,20 @@ import {
 import {
     PanelBody,
     TextControl,
-    Button
+    Button,
+    SelectControl,
+    RangeControl
 } from "@wordpress/components";
 
 export default function Edit({ attributes, setAttributes }) {
     const {
         items = [],
         logos = [],
-        sectionClass = ""
+        sectionClass = "",
+        paddingTop = 6,
+        paddingBottom = 6,
+        sectionMarginTop = "0",
+        columns = 3
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -126,6 +133,43 @@ export default function Edit({ attributes, setAttributes }) {
                         value={sectionClass}
                         onChange={(v) => setAttributes({ sectionClass: v })}
                     />
+
+                   <TextControl
+                        label="Section margin top"
+                        value={sectionMarginTop}
+                        onChange={(v) => setAttributes({ sectionMarginTop: v })}
+                    />
+
+                        <RangeControl
+                            label={__("Section Padding Top  (REM)", "zero")}
+                            value={paddingTop}
+                            onChange={(value) => setAttributes({ paddingTop: value })}
+                            min={0}
+                            max={10}
+                            />
+                            
+                        <RangeControl
+                            label={__("Section Padding Bottom (REM)", "zero")}
+                            value={paddingBottom}
+                            onChange={(value) => setAttributes({ paddingBottom: value })}
+                            min={0}
+                            max={10}
+                            />
+
+                         
+
+                     <SelectControl
+                        label="Columns on Desktop"
+                        value={attributes.columns}
+                        options={[
+                            { label: '2 Columns', value: 2 },
+                            { label: '3 Columns', value: 3 }
+                        ]}
+                        onChange={(value) => setAttributes({ columns: parseInt(value) })}
+                    />
+
+
+                
                 </PanelBody>
             </InspectorControls>
 

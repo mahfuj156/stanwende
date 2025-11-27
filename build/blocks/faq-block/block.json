@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "zero/faq-block",
-  "title": "FAQ Accordion",
+  "title": "SWende FAQ Accordion",
   "category": "widgets",
   "icon": {
     "src": "fa-regular fa-circle-question"
@@ -45,6 +45,42 @@
         "url": "",
         "alt": ""
       }
+    },
+    "sectionClass": {
+      "type": "string",
+      "default": "container mx-auto py-10 bg-white rounded-xl shadow-sm"
+    },
+    "sectionColor": {
+      "type": "string",
+      "default": ""
+    },
+    "paddingTop": {
+      "type": "number",
+      "default": 6
+    },
+    "paddingBottom": {
+      "type": "number",
+      "default": 6
+    },
+    "sectionMarginTop": {
+      "type": "string",
+      "default": "0"
+    },
+    "maxContainerWidth": {
+      "type": "number",
+      "default": 768
+    },
+    "columns": {
+      "type": "number",
+      "default": 3
+    },
+    "clientLayout": {
+      "type": "string",
+      "default": "stacked",
+      "enum": [
+        "stacked",
+        "inline"
+      ]
     }
   },
   "editorScript": "ztb-blocks-js",

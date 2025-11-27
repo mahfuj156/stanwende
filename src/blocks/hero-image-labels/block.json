@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
-  "name": "zero/hero-image-labels",
-  "title": "Hero Image With Labels",
+  "name": "zero/hero-image-labels", 
+  "title": "SWende Hero Image With Labels",
   "category": "design",
   "icon": "format-image",
   "description": "Hero block with heading, content, image, labels and optional video link.",
@@ -39,18 +39,30 @@
     "mainImage": {
       "type": "string",
       "default": ""
-    },
-    "leftLabel": {
-      "type": "string",
-      "default": ""
-    },
-    "rightLabel": {
-      "type": "string",
-      "default": ""
-    },
+    }, 
     "videoUrl": {
       "type": "string",
       "default": ""
+    },
+     "sectionColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+      "paddingTop": {
+      "type": "number",
+      "default": 6
+    },
+     "paddingBottom": {
+      "type": "number",
+      "default": 6
+    },
+     "titleFontSize": {
+      "type": "number",
+      "default": 46
+    },
+     "subtitleFontSize": {
+      "type": "number",
+      "default": 16
     }
   },
 

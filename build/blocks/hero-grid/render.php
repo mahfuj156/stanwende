@@ -9,7 +9,7 @@ $bulletListClass = $attributes['bulletListClass'] ?? 'space-y-2 mt-6';
 $bulletItemClass = $attributes['bulletItemClass'] ?? 'text-lg flex items-start gap-2';
 ?>
 
-<section class="<?= esc_attr($sectionClass); ?>">
+<section class="<?= esc_attr($sectionClass); ?> scroll-animate scroll-hidden">
     <div class="max-w-container-wide mx-auto">
         <div class="flex flex-col md:flex-row gap-16 justify-center items-center">
 

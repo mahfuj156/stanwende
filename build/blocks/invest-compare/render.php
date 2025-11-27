@@ -6,7 +6,7 @@ $columns     = $attributes['columns'] ?? []; // last 3 columns
 $rows        = $attributes['rows'] ?? [];
 ?>
 
-<section class="py-16 bg-bg1">
+<section class="py-16 bg-bg1 scroll-animate scroll-hidden">
     <div class="max-w-7xl mx-auto px-4">
         <!-- Block Title -->
         <?php if ($title): ?>
@@ -86,7 +86,7 @@ $rows        = $attributes['rows'] ?? [];
                     if ($buttonText && $buttonUrl): ?>
                         <div class="flex justify-center mt-2 md:mt-8">
                             <a href="<?= esc_url($buttonUrl); ?>" 
-                            class="inline-block faq-button-shadow px-6 py-3 text-p16 font-semibold no-underline rounded-12 shadow-sm">
+                            class="inline-block faq-button-shadow  hover:bg-green-1 hover:text-white px-6 py-3 text-p16 font-semibold no-underline rounded-12 shadow-sm">
                                 <?= esc_html($buttonText); ?>
                             </a>
                         </div>

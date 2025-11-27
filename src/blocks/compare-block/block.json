@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
      "name": "zero/compare-block",
-  "title": "Before & After Comparison",
+  "title": "SWende Before & After Comparison",
   "category": "widgets",
   "icon": {
     "src": "fa-solid fa-arrows-left-right"

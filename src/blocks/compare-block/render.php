@@ -6,7 +6,7 @@ $buttonUrl      = $attributes['buttonUrl'] ?? '';
 $items      = $attributes['items'] ?? [];
 ?>
 
-<section class="py-16 bg-bg4">
+<section class="py-16 bg-bg4 scroll-animate scroll-hidden">
     <div class="max-w-container-wide mx-auto px-4 gap-y-12">
         <h2 class="text-3xl md:text-4xl font-bold text-center   mb-16">
             <?= wp_kses_post($title); ?>
@@ -14,7 +14,8 @@ $items      = $attributes['items'] ?? [];
 
         <div class="columns-1 sm:columns-2 md:columns-3 gap-x-12  gap-y-12 items-stretch">
             <?php foreach ($items as $item): ?>
-                <div class="bg-white rounded-xl p-6 mb-12 shadow flex flex-col h-full after-beforeblock">
+                <div class="bg-white rounded-xl p-6 mb-12 shadow flex flex-col h-full after-beforeblock 
+            transition-transform duration-300 hover:scale-105 hover:shadow-xl"> 
                     <!-- avatar and name inline, centered -->
                     <div class="text-center mb-4" style="    margin-top: -46px;">
                         <span class="inline-flex items-center bg-white px-4 py-1 rounded-full font-semibold text-lg">
@@ -49,10 +50,10 @@ $items      = $attributes['items'] ?? [];
         <!-- Button to View All Reviews -->
         <div class="flex justify-center mb-10">
             <a 
-                class="inline-block bg-primary text-white px-5 py-3 text-p16 rounded-12 no-underline shadow-btn-primary text-center"
+                class="inline-block bg-primary hover:bg-green-1 text-white px-5 py-3 text-p16 rounded-12 no-underline shadow-btn-primary text-center"
                 href="<?= esc_url($buttonUrl); ?>"
             >
-                <?= esc_html($buttonText); ?>  <i class="fa-solid fa-arrow-right-long pl-3"></i>
+                <?= esc_html($buttonText); ?>  
             </a>
         </div>
 

@@ -8,7 +8,8 @@ import {
     PanelBody,
     TextControl,
     TextareaControl,
-    Button
+    Button,
+    RangeControl
 } from "@wordpress/components";
 import { Fragment, useEffect } from "@wordpress/element";
 
@@ -24,7 +25,13 @@ export default function Edit({ attributes, setAttributes }) {
         rightIcons,
         extraText,
         buttonText,
-        bgColor
+        buttonUrl, 
+        sectionClass,
+        sectionColor,
+        paddingTop,
+        paddingBottom,
+        maxContainerWidth,
+        sectionMarginTop,
     } = attributes;
 
     /** ---------------------------------------
@@ -96,7 +103,7 @@ export default function Edit({ attributes, setAttributes }) {
      * --------------------------------------*/
     const blockProps = useBlockProps({
         className: "p-8 md:p-12 rounded-xl",
-        style: { backgroundColor: bgColor }
+        style: { backgroundColor: sectionColor }
     });
 
     return (
@@ -105,7 +112,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <PanelBody title="Content Settings" initialOpen={true}>
 
                     {/* MAIN TITLES */}
-                    <TextControl
+                    <TextareaControl
                         label="Main Title"
                         value={title}
                         onChange={(v) => setAttributes({ title: v })}
@@ -115,7 +122,7 @@ export default function Edit({ attributes, setAttributes }) {
                     <hr />
                     <h3>Left Column</h3>
 
-                    <TextControl
+                    <TextareaControl
                         label="Left Column Title"
                         value={leftTitle}
                         onChange={(v) => setAttributes({ leftTitle: v })}
@@ -209,8 +216,59 @@ export default function Edit({ attributes, setAttributes }) {
                         value={buttonText}
                         onChange={(v) => setAttributes({ buttonText: v })}
                     />
+                    <TextControl
+                        label="Button URL"
+                        value={buttonUrl}
+                        onChange={(v) => setAttributes({ buttonUrl: v })}
+                    />
+ 
 
                 </PanelBody>
+
+
+                 <PanelBody title="Styles" initialOpen={false}>
+                
+                                    <TextControl
+                                        label="Container Max Width"
+                                        value={maxContainerWidth}
+                                        onChange={(v) => setAttributes({ maxContainerWidth: v })}
+                                    />
+                                    <TextControl
+                                        label="Section Background Color"
+                                        value={sectionColor}
+                                        onChange={(v) => setAttributes({ sectionColor: v })}
+                                    />
+                                    <TextControl
+                                        label="Section Classes"
+                                        value={sectionClass}
+                                        onChange={(v) => setAttributes({ sectionClass: v })}
+                                    />
+                
+                                   <TextControl
+                                        label="Section margin top"
+                                        value={sectionMarginTop}
+                                        onChange={(v) => setAttributes({ sectionMarginTop: v })}
+                                    />
+                
+                                    <RangeControl
+                                        label={__("Section Padding Top  (REM)", "zero")}
+                                        value={paddingTop}
+                                        onChange={(value) => setAttributes({ paddingTop: value })}
+                                        min={0}
+                                        max={20}
+                                        />
+                                        
+                                    <RangeControl
+                                        label={__("Section Padding Bottom (REM)", "zero")}
+                                        value={paddingBottom}
+                                        onChange={(value) => setAttributes({ paddingBottom: value })}
+                                        min={0}
+                                        max={20}
+                                        /> 
+                
+                                             
+                                </PanelBody>
+
             </InspectorControls>
 
             {/* Backend preview (same layout as frontend) */}

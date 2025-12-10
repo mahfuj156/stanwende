@@ -13,3 +13,8 @@
  import "./blocks/investment-selector";
  import "./blocks/timeline";
  import "./blocks/calculator";
+ import "./blocks/performance-graphs";
+ import "./blocks/special-layout-table";
+ import "./blocks/investment-calculator";
+ import "./blocks/contact-us";
+ import "./blocks/documents";

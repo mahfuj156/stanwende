@@ -16,15 +16,16 @@ $paddingTop   = $attributes['paddingTop'] ?? 0;
 $paddingBottom   = $attributes['paddingBottom'] ?? 0;
 $titleFontSize   = $attributes['titleFontSize'] ?? 46;
 $subtitleFontSize   = $attributes['subtitleFontSize'] ?? 16;
+$imagePosition   = $attributes['imagePosition'] ?? "right";
  
 ?>
  
 <section class="px-4 py-20 bg-custom-bg scroll-animate scroll-hidden" style="background-color: <?= esc_attr($sectionColor); ?>; padding-top: <?= esc_attr($paddingTop); ?>rem; padding-bottom: <?= esc_attr($paddingBottom); ?>rem;">
   <div class="max-w-container-wide mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
       <!-- IMAGE on mobile first order 1, on desktop order 2 -->
-      <div class="order-1 md:order-2 relative">
+      <div class="order-1 md:order-<?php if($imagePosition=='left'){echo 1;}else {echo 2; } ?> relative">
         <?php if ($mainImage): ?>
           <img src="<?= esc_url($mainImage); ?>" class="rounded-xl w-full object-cover" alt="">
         <?php endif; ?>
@@ -43,21 +44,24 @@ $subtitleFontSize   = $attributes['subtitleFontSize'] ?? 16;
       </div>
 
       <!-- TEXT on mobile first order 2, on desktop order 1 -->
-      <div class="order-2 md:order-1">
+      <div class="order-2 md:order-<?php if($imagePosition=='left'){echo 2;}else {echo 1; } ?>">
         <h2 class="text-h46 md:text-h46 font-bold leading-114 mb-4"><?= wp_kses_post($heading); ?></h2>
         <p class="text-info text-h18 font-bold leading-150 mb-4"><?= wp_kses_post($subtitle); ?></p>
-        <p class="text-gray-700 mb-6"><?= wp_kses_post($content); ?></p>
+        <p class="text-gray-700 text-18 mb-6"><?= wp_kses_post($content); ?></p>
 
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <?php if($buttonText): ?>
           <a class="inline-block bg-primary text-white px-5 py-3 text-p16 rounded-12 no-underline shadow-btn-primary text-center"
              href="<?= esc_url($buttonUrl); ?>">
             <?= wp_kses_post($buttonText); ?>
           </a>
-
+            <?php endif; ?>
+             <?php if($secondaryButtonText): ?>
           <a class="inline-block text-primary font-semibold no-underline px-3 py-3 text-p16 text-center"
              href="<?= esc_url($secondaryButtonUrl); ?>">
             <?= wp_kses_post($secondaryButtonText); ?> 
           </a>
+          <?php endif; ?>
         </div>
       </div>
 

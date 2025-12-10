@@ -14,17 +14,30 @@
       "type": "string",
       "default": "Stan&Wende is er voor de kleine en grote belegger..."
     },
+    "subtitleIcon": {
+      "type": "string",
+      "default": ""
+    },
+   
+ 
     "eyebrow": {
       "type": "string",
       "default": "Feit"
     },
+       "eyebrowIcon": {
+      "type": "string",
+      "default": ""
+    }, 
     "description": {
       "type": "string",
       "default": "Er wordt vaak gedacht dat duurzaam beleggen lager rendement betekent. Niets is minder waar..."
     },
 
     "bullets": { "type": "array", "default": [] },
-
+"bulletIcons": {
+    "type": "array",
+    "default": []
+},
     "stat1": {
       "type": "string",
       "default": "5,84%"
@@ -84,7 +97,7 @@
     },
     "maxContainerWidth": {
       "type": "number",
-      "default": 768
+      "default": 1312
     },
     "imagePosition": { "type": "string", "default": "right" },
      "columns": {

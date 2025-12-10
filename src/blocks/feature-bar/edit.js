@@ -12,17 +12,22 @@ import {
     TextControl,
     Button,
     SelectControl,
-    RangeControl
+    RangeControl,
+    TextareaControl
 } from "@wordpress/components";
 
 export default function Edit({ attributes, setAttributes }) {
     const {
         items = [],
         logos = [],
+        logoTitle = "",
         sectionClass = "",
+        sectionColor = "#FFF",
         paddingTop = 6,
         paddingBottom = 6,
         sectionMarginTop = "0",
+        maxContainerWidth = "1312",
+        showDivider = "Yes",
         columns = 3
     } = attributes;
 
@@ -76,7 +81,50 @@ export default function Edit({ attributes, setAttributes }) {
                                 onChange={(v) => updateItem(index, "icon", v)}
                             />
 
-                            <TextControl
+
+                              <MediaUploadCheck>
+                                <MediaUpload
+                                    onSelect={(media) => updateItem(index, "image", media.url)}
+                                    allowedTypes={["image"]}
+                                    render={({ open }) => (
+                                        <div style={{ marginBottom: "1rem" }}>
+                                            <p><strong>Item Image</strong></p>
+
+                                            {item.image ? (
+                                                <>
+                                                    <img 
+                                                        src={item.image}
+                                                        style={{ 
+                                                            maxWidth: "100%", 
+                                                            borderRadius: "10px", 
+                                                            marginBottom: "10px" 
+                                                        }} 
+                                                    />
+                                                    
+                                                    <Button onClick={open} isSecondary>
+                                                        Replace Image
+                                                    </Button>
+
+                                                    <Button 
+                                                        isDestructive
+                                                        onClick={() => updateItem(index, "image", "")}
+                                                        style={{ marginLeft: "10px" }}
+                                                    >
+                                                        Remove
+                                                    </Button>
+                                                </>
+                                            ) : (
+                                                <Button isPrimary onClick={open}>
+                                                    Upload Image
+                                                </Button>
+                                            )}
+                                        </div>
+                                    )}
+                                />
+                            </MediaUploadCheck>
+
+
+                            <TextareaControl
                                 label="Text"
                                 value={item.text}
                                 onChange={(v) => updateItem(index, "text", v)}
@@ -125,6 +173,13 @@ export default function Edit({ attributes, setAttributes }) {
                             </div>
                         ))}
                     </div>
+
+                     <TextControl
+                        label="Partner Heading"
+                        value={logoTitle}
+                        onChange={(v) => setAttributes({ logoTitle: v })}
+                    />
+
                 </PanelBody>
 
                 <PanelBody title="Styles" initialOpen={false}>
@@ -134,30 +189,53 @@ export default function Edit({ attributes, setAttributes }) {
                         onChange={(v) => setAttributes({ sectionClass: v })}
                     />
 
+                    <TextControl
+                        label="Section Background Color"
+                        value={sectionColor}
+                        onChange={(v) => setAttributes({ sectionColor: v })}
+                    />
+
+                   
+                     <TextControl
+                        label="Section Container Width (PX)"
+                        value={maxContainerWidth}
+                        onChange={(v) => setAttributes({ maxContainerWidth: v })}
+                    /> 
+                    
+
                    <TextControl
                         label="Section margin top"
                         value={sectionMarginTop}
                         onChange={(v) => setAttributes({ sectionMarginTop: v })}
                     />
 
-                        <RangeControl
-                            label={__("Section Padding Top  (REM)", "zero")}
-                            value={paddingTop}
-                            onChange={(value) => setAttributes({ paddingTop: value })}
-                            min={0}
-                            max={10}
-                            />
-                            
-                        <RangeControl
-                            label={__("Section Padding Bottom (REM)", "zero")}
-                            value={paddingBottom}
-                            onChange={(value) => setAttributes({ paddingBottom: value })}
-                            min={0}
-                            max={10}
-                            />
+                    <RangeControl
+                        label={__("Section Padding Top  (REM)", "zero")}
+                        value={paddingTop}
+                        onChange={(value) => setAttributes({ paddingTop: value })}
+                        min={0}
+                        max={20}
+                        />
+                        
+                    <RangeControl
+                        label={__("Section Padding Bottom (REM)", "zero")}
+                        value={paddingBottom}
+                        onChange={(value) => setAttributes({ paddingBottom: value })}
+                        min={0}
+                        max={20}
+                        />
 
                          
 
+                     <SelectControl
+                        label="Show Devider"
+                        value={attributes.showDivider}
+                        options={[
+                            { label: 'Yes', value: "Yes"},
+                            { label: 'No', value: 'No' }
+                        ]}
+                        onChange={(value) => setAttributes({ showDivider: value })}
+                    />
                      <SelectControl
                         label="Columns on Desktop"
                         value={attributes.columns}
@@ -191,7 +269,7 @@ export default function Edit({ attributes, setAttributes }) {
 
                     {/* Logos */}
                     <div className="text-center font-semibold text-gray-700">
-                        Bekend van:
+                        {logoTitle}
                     </div>
 
                     <div className="flex flex-wrap justify-center gap-6">

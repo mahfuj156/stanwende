@@ -95,7 +95,7 @@ switch ($itemCount) {
                          <div class="mt-auto pt-6">
                             <a 
                                 href="<?= esc_url($item['buttonUrl'] ?? '#'); ?>" 
-                                class="block w-full text-center faq-button-shadow hover:bg-green-1 hover:text-white px-6 py-3 text-p16 font-semibold no-underline rounded-12 shadow-sm"
+                                class="block w-full text-center faq-button-shadow hover:bg-green-1 hover:text-white px-3 py-2 text-p16 font-semibold no-underline rounded-12 shadow-sm"
                             >
                                 <?= esc_html($item['buttonText']); ?>
                             </a>

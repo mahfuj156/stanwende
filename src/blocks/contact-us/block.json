@@ -1,0 +1,57 @@
+{
+  "apiVersion": 3,
+  "name": "zero/contact-us",
+  "title": "Contact Intake Section",
+  "category": "layout",
+  "icon": "index-card",
+  "description": "Two-column contact section with intro, appointment planning and contact form.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "titleLeft": {
+      "type": "string",
+      "default": "Plan kennismaking"
+    },
+    "leftSubtitle": {
+      "type": "string",
+      "default": "Plan kennismaking"
+    },
+    "leftPaneltitle": {
+      "type": "string",
+      "default": "Afspraakplanner"
+    },
+    "leftPanelSubTitle": {
+      "type": "string",
+      "default": "Afspraakplanner"
+    },
+
+    
+    "clientImage": {
+      "type": "object",
+      "default": {
+        "url": "",
+        "alt": ""
+      }
+    },
+    "bullets": {
+      "type": "array", "default": []
+    }, 
+     "leftContactHeading": {
+      "type": "string",
+      "default": "Hoe wil je graag contact hebben?"
+    },
+
+    "titleRight": {
+      "type": "string",
+      "default": "Stel hier je vraag"
+    },
+     "rightSubtitle": {
+      "type": "string",
+      "default": "Plan kennismaking"
+    }
+  },
+  "editorScript": "ztb-blocks-js",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

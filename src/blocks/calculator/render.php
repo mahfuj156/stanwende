@@ -53,61 +53,62 @@ $containerMaxWidth      = $attributes['containerMaxWidth'] ?? '1024';
 <div class="bg-info text-white p-8 rounded-xl shadow-md md:min-h-[440px] flex flex-col justify-between">
 
     <!-- TOP SECTION -->
-    <div class='p-4'>
+ 
         <div class="grid grid-cols-2 gap-10">
             <div>
                 <h3 class="text-h22 font-bold leading-150 mb-2">Jaarruimte</h3>
-                <p class="opacity-90 text-sm">Dit kun je dit jaar inleggen.</p>
+                <p class="opacity-90 text-p16">Dit kun je dit jaar inleggen.</p>
             </div>
 
            <div class="col-span-1 flex justify-end" style=''>
-                <p class="text-4xl font-bold mb-1 justify-end">€ <?= esc_html($resultRoom); ?></p>
+                <p class="text-h22 leading-140 font-bold mb-1 justify-end">€ <?= esc_html($resultRoom); ?></p>
             </div>
         </div>
 
         <!-- Separator line -->
-        <div class="w-full h-[1px] bg-white/20 my-6"></div>
+        <div class="w-full h-[1px] bg-[#F8E6D8] my-6" style='background: #F8E6D8; height: 1px'></div>
 
         <!-- BASED ON -->
-        <p class="text-sm opacity-80 mb-3">Op basis van</p>
+        <p class="text-p18 opacity-80 mb-3">Op basis van</p>
 
-         <div class="grid grid-cols-2 gap-10">
+         <div class="grid grid-cols-2 gap-2">
             <div> 
-                <p class="opacity-90 text-sm">Bruto verzamelinkomen 2024:</p>
+                <p class="opacity-90 text-p16">Bruto verzamelinkomen 2024:</p>
             </div>
 
            <div class="col-span-1 flex justify-end" style=''>
-                <p class="text-p16  d mb-1 justify-end"> € <?= esc_html($incomeExample); ?></p>
+                <p class="text-p16  d mb-1 justify-end flex gap-4"><span><i class="fa-regular fa-circle-question" style='color: #9ABA9D'></i></span> <span>€ <?= esc_html($incomeExample); ?> </span></p>
             </div>
         </div>
 
-         <div class="grid grid-cols-2 gap-10">
-            <div> 
-                <p class="opacity-90 text-sm">Pensioenopbouw (Factor A) 2024:</p>
+         <div class="grid grid-cols-2 gap-2">
+            <div class='flex-7' > 
+                <p class="opacity-90 text-p16">Pensioenopbouw (Factor A) 2024:</p>
             </div>
 
-           <div class="col-span-1 flex justify-end" style=''>
-                <p class="text-p16   mb-1 justify-end"> € <?= esc_html($pensionExample); ?></p>
+           <div class="flex-3 col-span-1 flex justify-end"  >
+                <p class="text-p16   mb-1 justify-end  flex gap-4"><span><i class="fa-regular fa-circle-question" style='color: #9ABA9D'></i></span>  <span>€ <?= esc_html($pensionExample); ?> </span></p>
             </div>
         </div>
  
-    </div>
+   
 
        <!-- Separator line -->
-        <div class="w-full h-[1px] bg-white/20 my-6"></div>
+              <div class="w-full h-[1px] bg-[#F8E6D8] my-6" style='background: #F8E6D8; height: 1px'></div>
 
-    <!-- BOTTOM SECTION -->
-    <div class="mt-6 grid grid-cols-2">
-        <div>
-            <h3 class="text-h22 font-bold leading-150">Teruggave*</h3>
-            <p class="opacity-90 text-sm">Indicatie belastingvoordeel.</p>
+
+        <!-- BOTTOM SECTION -->
+        <div class="mt-6 grid grid-cols-2">
+            <div>
+                <h3 class="text-h22 font-bold leading-150">Teruggave*</h3>
+                <p class="opacity-90 text-p16">Indicatie belastingvoordeel.</p>
+            </div>
+            <div class="text-right">
+                <p class="text-h22 font-bold">€ <?= esc_html($resultBack); ?></p>
+            </div>
         </div>
-        <div class="text-right">
-            <p class="text-3xl font-bold">€ <?= esc_html($resultBack); ?></p>
-        </div>
+
     </div>
-
-</div>
  
 
         </div>

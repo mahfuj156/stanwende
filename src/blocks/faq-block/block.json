@@ -15,6 +15,10 @@
       "type": "string",
       "default": "Veelgestelde vragen"
     },
+    "subtitle": {
+      "type": "string",
+      "default": ""
+    },
     "items": {
       "type": "array",
       "default": []
@@ -40,14 +44,10 @@
       "type": "string",
       "default": "Alex de Vries"
     },
-    "clientImage": {
-      "type": "object",
-      "default": {
-        "url": "",
-        "alt": ""
-      }
+  "clientImage": {
+      "type": "string",
+      "default": ""
     },
-
     "sectionClass": {
       "type": "string",
       "default": "container mx-auto py-10 bg-white rounded-xl shadow-sm"
@@ -72,7 +72,7 @@
     },
     "maxContainerWidth": {
       "type": "number",
-      "default": 768
+      "default": 1312
     },
 
     "columns": {

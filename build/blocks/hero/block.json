@@ -5,6 +5,14 @@
   "category": "design",
   "icon": "slides",
   "attributes": {
+    "eyebrowIcon": {
+      "type": "string",
+      "default": ""
+    },
+    "eyebrow": {
+      "type": "string",
+      "default": "Feit"
+    },
     "heading": {
       "type": "string",
       "default": ""
@@ -56,6 +64,14 @@
     "sectionColor": {
       "type": "string",
       "default": "#F3F7F4"
+    },
+    "leftColumnWidthClass": {
+      "type": "string",
+      "default": "md:w-7/12"
+    },
+    "rightColumnWidthClass": {
+      "type": "string",
+      "default": "md:w-5/12"
     },
     "paddingTop": {
       "type": "number",

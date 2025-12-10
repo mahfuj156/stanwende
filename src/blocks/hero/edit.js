@@ -19,16 +19,17 @@ import {
 import { Fragment } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
-    const {
+    const { 
         heading = "",
         subheading = "",
-        bullets = [],
-        bulletIcons = [],
+        bullets = [], 
         buttonPrimary = "",
         buttonSecondary = "",
         buttonPrimaryUrl = "",
         buttonSecondaryUrl = "",
         images = [],
+        leftColumnWidthClass = "md:w-7/12",
+        rightColumnWidthClass = "md:w-5/12",
         sectionClass = "",
         sectionColor = "",
         styleType = "light",
@@ -38,33 +39,46 @@ export default function Edit({ attributes, setAttributes }) {
         paddingTop = 0,
         paddingBottom = 0,
         titleFontSize = "46",
+        eyebrowIcon = "",
+        eyebrow = "Feit"
     } = attributes;
 
     const blockProps = useBlockProps({
         className: `${sectionClass} p-10`
     });
+ 
 
-    // ----- BULLETS -----
-    const addBullet = () => {
-        setAttributes({ 
-            bullets: [...bullets, ""],
-            bulletIcons: [...bulletIcons, "fas fa-check"] // default icon
+
+    
+      // -------------------------
+    // PARENT ITEM FUNCTIONS
+    // -------------------------
+    const addItem = () => {
+        setAttributes({
+            bullets: [
+                ...bullets,
+                {
+                    iconImage: { id: 0, url: "" },
+                    title: "", 
+                    link: "", 
+                }
+            ]
         });
     };
 
-    const updateBullet = (index, value) => {
-        const newBullets = [...bullets];
-        newBullets[index] = value;
-        setAttributes({ bullets: newBullets });
+    const updateItem = (index, field, value) => {
+        const newItems = [...bullets];
+        newItems[index][field] = value;
+        setAttributes({ bullets: newItems });
     };
 
-    const removeBullet = (index) => {
-        const newBullets = [...bullets];
-        const newIcons = [...bulletIcons];
-        newBullets.splice(index, 1);
-        newIcons.splice(index, 1);
-        setAttributes({ bullets: newBullets, bulletIcons: newIcons });
+    const removeItem = (index) => {
+        const updated = [...bullets];
+        updated.splice(index, 1);
+        setAttributes({ bullets: updated });
     };
+
+
 
     // ----- IMAGES -----
     const addImages = (media) => {
@@ -85,7 +99,35 @@ export default function Edit({ attributes, setAttributes }) {
 
                 {/* Content Panel */}
                 <PanelBody title="Hero Content" initialOpen={true}>
+
+                      <MediaUploadCheck>
+                        <MediaUpload
+                        onSelect={(media) => setAttributes({ eyebrowIcon: media.url })}
+                        allowedTypes={["image"]}
+                        render={({ open }) => (
+                            <div style={{ marginBottom: "1rem" }}>
+                            <p><strong>Eyebrow Icon</strong></p>
+
+                            {eyebrowIcon ? (
+                                <>
+                                <img src={eyebrowIcon} style={{ maxWidth: "100%", borderRadius: "10px", marginBottom: "10px" }} />
+                                <Button onClick={open} isSecondary>Replace Image</Button>
+                                <Button isDestructive onClick={() => setAttributes({ eyebrowIcon: "" })} style={{ marginLeft: "10px" }}>Remove</Button>
+                                </>
+                            ) : (
+                                <Button isPrimary onClick={open}>Upload Image</Button>
+                            )}
+                            </div>
+                        )}
+                        />
+                    </MediaUploadCheck>
+
                     <TextControl
+                        label="Eyebrow"
+                        value={eyebrow}
+                        onChange={(v) => setAttributes({ eyebrow: v })}
+                    />
+                    <TextareaControl
                         label="Heading"
                         value={heading}
                         onChange={(v) => setAttributes({ heading: v })}
@@ -97,26 +139,82 @@ export default function Edit({ attributes, setAttributes }) {
                     />
 
                     <h4 className="mt-4">Bullet Points</h4>
-                   {bullets.map((b, i) => (
-                        <div key={i} className="mb-2">
+                    {bullets.map((item, index) => (
+                        <div key={index} className="mb-2">
+
+                             {/* ITEM ICON IMAGE */}
+                            <MediaUploadCheck>
+                                <MediaUpload
+                                    onSelect={(media) =>
+                                        updateItem(index, "iconImage", {
+                                            id: media.id,
+                                            url: media.url
+                                        })
+                                    }
+                                    allowedTypes={["image"]}
+                                    value={item.iconImage?.id}
+                                    render={({ open }) => (
+                                        <div className="mb-3">
+                                            <label className="font-semibold">Item  Image</label>
+
+                                            {item.iconImage?.url ? (
+                                                <div className="flex flex-col gap-2 mt-2">
+                                                    <img
+                                                        src={item.iconImage.url}
+                                                        style={{
+                                                            width: "80px",
+                                                            height: "80px",
+                                                            objectFit: "contain"
+                                                        }}
+                                                    />
+
+                                                    <div className="flex gap-2">
+                                                        <Button isSecondary onClick={open}>
+                                                            Replace Image
+                                                        </Button>
+                                                        <Button
+                                                            isDestructive
+                                                            onClick={() =>
+                                                                updateItem(index, "iconImage", { id: 0, url: "" })
+                                                            }
+                                                        >
+                                                            Remove
+                                                        </Button>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <Button isPrimary className="mt-2" onClick={open}>
+                                                    Upload Icon Image
+                                                </Button>
+                                            )}
+                                        </div>
+                                    )}
+                                />
+                            </MediaUploadCheck> 
+
                             <TextareaControl
-                                label={`Bullet ${i + 1}`}
-                                value={b}
-                                onChange={(v) => updateBullet(i, v)}
+                                label={`Bullet Title ${index + 1}`}
+                                value={item.title}
+                                onChange={(v) => updateItem(index, "title", v)}
+                            />
+                            <TextareaControl
+                                label={`Bullet Link ${index + 1}`}
+                                value={item.link}
+                                onChange={(v) => updateItem(index, "link", v)}
                             />
                             <Button 
                                 isDestructive 
-                                onClick={() => removeBullet(i)} 
+                                onClick={() => removeItem(index)}
                                 className="mt-1"
                             >
                                 Remove
                             </Button>
                         </div>
                     ))}
-                    <Button isPrimary onClick={addBullet}>Add Bullet</Button>
+                    <Button isPrimary onClick={addItem}>Add Bullet</Button>
 
                     
-                    <TextControl
+                    <TextareaControl
                         label="Primary Button Text"
                         value={buttonPrimary}
                         onChange={(v) => setAttributes({ buttonPrimary: v })}
@@ -126,7 +224,7 @@ export default function Edit({ attributes, setAttributes }) {
                         value={buttonPrimaryUrl}
                         onChange={(v) => setAttributes({ buttonPrimaryUrl: v })}
                     />
-                    <TextControl
+                    <TextareaControl
                         label="Secondary Button Text"
                         value={buttonSecondary}
                         onChange={(v) => setAttributes({ buttonSecondary: v })}
@@ -177,12 +275,23 @@ export default function Edit({ attributes, setAttributes }) {
                         onChange={(v) => setAttributes({ sectionClass: v })}
                     />
 
+                    <TextControl
+                        label="Left Column Class"
+                        value={leftColumnWidthClass}
+                        onChange={(v) => setAttributes({ leftColumnWidthClass: v })}
+                    />
+                    <TextControl
+                        label="Right Column Class"
+                        value={rightColumnWidthClass}
+                        onChange={(v) => setAttributes({ rightColumnWidthClass: v })}
+                    />
+
                     <RangeControl
                         label={__("Section Padding Top  (REM)", "zero")}
                         value={paddingTop}
                         onChange={(value) => setAttributes({ paddingTop: value })}
                         min={0}
-                        max={10}
+                        max={20}
                         />
                         
                     <RangeControl
@@ -190,7 +299,7 @@ export default function Edit({ attributes, setAttributes }) {
                         value={paddingBottom}
                         onChange={(value) => setAttributes({ paddingBottom: value })}
                         min={0}
-                        max={10}
+                        max={20}
                         />
                     <RangeControl
                         label={__("Title Font Size (PX)", "zero")}
@@ -234,15 +343,26 @@ export default function Edit({ attributes, setAttributes }) {
 
     {/* LEFT COLUMN */}
                 <div className={`${imagePosition === "left" ? "order-last md:order-first" : ""} flex-1`}>
+                    <p className="text-2xl font-bold">{eyebrow}</p>
                     <h1 className="text-5xl font-bold">{heading}</h1>
                     <p className="mt-6 text-lg">{subheading}</p>
 
                     <ul className={bulletListClass}>
-                        {bullets.map((b, i) => (
-                            <li key={i} className={bulletItemClass}>
-                                {bulletIcons[i] && <i className={bulletIcons[i]}></i>} {b}
-                            </li>
-                        ))}
+                       
+
+                        {bullets.map((item, index) => (
+                        <li key={index} className={bulletItemClass}>
+                            {item.iconImage?.url && (
+                                <img
+                                    src={item.iconImage.url}
+                                    className="w-12 h-12 object-contain mb-3"
+                                />
+                            )}
+
+                            <h3 className="text-xl font-bold">{item.title}</h3> 
+                       </li>
+                    ))}
+
                     </ul>
 
                     <div className="mt-8 flex gap-4">

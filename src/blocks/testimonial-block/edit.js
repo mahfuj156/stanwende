@@ -15,7 +15,7 @@ import {
 import { Fragment } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
-    const { title, subtitle, buttonText, buttonUrl, testimonials = [] } = attributes;
+    const { title, subtitle, buttonText, buttonUrl, testimonials = [],sectionClass="", sectionColor="" ,paddingTop="",paddingBottom="",maxContainerWidth="",titleFontSize="",subtitleFontSize="" } = attributes;
 
     const addTestimonial = () => {
         setAttributes({
@@ -55,12 +55,12 @@ export default function Edit({ attributes, setAttributes }) {
                         value={subtitle}
                         onChange={(v) => setAttributes({ subtitle: v })}
                     />
-                    <TextControl
+                    <TextareaControl
                         label={__("Button text", "zero")}
                         value={buttonText}
                         onChange={(v) => setAttributes({ buttonText: v })}
                     />
-                    <TextControl
+                    <TextareaControl
                         label={__("Button URL", "zero")}
                         value={buttonUrl}
                         onChange={(v) => setAttributes({ buttonUrl: v })}
@@ -125,6 +125,64 @@ export default function Edit({ attributes, setAttributes }) {
                         {__("Add Testimonial", "zero")}
                     </Button>
                 </PanelBody>
+
+
+                 {/* Style Panel */}
+                                <PanelBody title="Styles" initialOpen={false}>
+                
+                                    <TextControl
+                                        label="Section Class"
+                                        value={sectionClass}
+                                        onChange={(v) => setAttributes({ sectionClass: v })}
+                                    />
+                                    <TextControl
+                                        label="Section Background Color"
+                                        value={sectionColor}
+                                        onChange={(v) => setAttributes({ sectionColor: v })}
+                                    />
+
+                                     <TextControl
+                                        label="Container Max Width"
+                                        value={maxContainerWidth}
+                                        onChange={(v) => setAttributes({ maxContainerWidth: v })}
+                                    />
+
+
+
+                
+                                   
+                
+                                    <RangeControl
+                                        label={__("Section Padding Top  (REM)", "zero")}
+                                        value={paddingTop}
+                                        onChange={(value) => setAttributes({ paddingTop: value })}
+                                        min={0}
+                                        max={20}
+                                        />
+                                        
+                                    <RangeControl
+                                        label={__("Section Padding Bottom (REM)", "zero")}
+                                        value={paddingBottom}
+                                        onChange={(value) => setAttributes({ paddingBottom: value })}
+                                        min={0}
+                                        max={20}
+                                        />
+                                    <RangeControl
+                                        label={__("Title Font Size (PX)", "zero")}
+                                        value={titleFontSize}
+                                        onChange={(value) => setAttributes({ titleFontSize: value })}
+                                        min={10}
+                                        max={100}
+                                        /> 
+                                    <RangeControl
+                                        label={__("Subtitle Font Size (PX)", "zero")}
+                                        value={subtitleFontSize}
+                                        onChange={(value) => setAttributes({ subtitleFontSize: value })}
+                                        min={10}
+                                        max={100}
+                                        /> 
+                                </PanelBody>
+
             </InspectorControls>
 
             <section {...blockProps}>

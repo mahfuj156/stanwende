@@ -55,7 +55,7 @@ export default function Edit({ attributes, setAttributes }) {
                         value={subtitle}
                         onChange={(value) => setAttributes({ subtitle: value })}
                     />
-                    <TextControl
+                    <TextareaControl
                         label="Button Text"
                         value={buttonText}
                         onChange={(value) => setAttributes({ buttonText: value })}

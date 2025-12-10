@@ -13,11 +13,11 @@ $subtitleFontSize = $attributes['subtitleFontSize'] ?? 16;
  
 <?php
 if($heading): ?>
-  <h2 class="text-4xl font-bold mb-2 text-center" style="font-size: <?= esc_attr($titleFontSize); ?>px;"><?= esc_html($heading); ?></h2>
+  <h2 class="text-4xl font-bold mb-2 text-center" style="font-size: <?= esc_attr($titleFontSize); ?>px;"><?= wp_kses_post($heading); ?></h2>
 <?php endif; ?>
 
   <?php if($subtitle): ?>
-  <p class="text-gray-700 mb-8   text-center" style="font-size: <?= esc_attr($subtitleFontSize); ?>px;"><?= esc_html($subtitle); ?></p>
+  <p class="text-gray-700 mb-12  text-center" style="font-size: <?= esc_attr($subtitleFontSize); ?>px;"><?= wp_kses_post($subtitle); ?></p>
   <?php endif; ?>
 
 
@@ -26,13 +26,13 @@ if($heading): ?>
     <?php foreach ($cards as $card): 
       $url = $card['url'] ?? '#';
     ?>
-    <div class="block no-underline bg-[#FFF7EF] rounded-xl p-6 cursor-pointer hover:shadow-lg transition-shadow">
+    <div class="block no-underline bg-[#FFF7EF] rounded-xl p-4 cursor-pointer hover:shadow-lg transition-shadow">
       <a href="<?= esc_url($url); ?>" target="_blank" rel="noopener noreferrer " class="block no-underline   "> 
         <h5 class="font-semibold text-2xl relative items-center"  style='font-size: 18px'>
-        <?= esc_html($card['title']); ?>
+        <?= wp_kses_post($card['title']); ?>
         <span class="text-black font-bold ml-2" style="position: absolute; right: 0; top: 0">›</span>
         </h5>     
-        <p class="text-gray-500 "><?= esc_html($card['description']); ?></p>
+        <p class="text-gray-500 "><?= wp_kses_post($card['description']); ?></p>
             
       </a>
     </div>

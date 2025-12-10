@@ -5,7 +5,17 @@ import apiFetch from "@wordpress/api-fetch";
 import { __ } from "@wordpress/i18n";
 
 export default function Edit({ attributes, setAttributes }) {
-  const {title, subtitle,metatitle, category, numberOfPosts, order, buttonText, buttonUrl } = attributes;
+  const {title, subtitle,metatitle, category, numberOfPosts, order, buttonText, buttonUrl,
+     sectionClass,
+        sectionBGColor,
+        paddingTop,
+        paddingBottom,
+        sectionMarginTop,
+        containerMaxWidth,
+        textAlignment,
+        showCategory,
+        showPagination,
+   } = attributes;
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -63,7 +73,7 @@ export default function Edit({ attributes, setAttributes }) {
             value={numberOfPosts}
             onChange={(value) => setAttributes({ numberOfPosts: value })}
             min={1}
-            max={10}
+            max={20}
           />
 
           <SelectControl
@@ -88,8 +98,84 @@ export default function Edit({ attributes, setAttributes }) {
             value={buttonUrl}
             onChange={(value) => setAttributes({ buttonUrl: value })}
           />
+
+            <SelectControl
+            label="Show Category"
+            value={showCategory}
+            options={[
+              { label: 'Show Category', value: "Yes" },
+              { label: 'Hide Category', value: "No" }
+            ]}
+            onChange={(value) => setAttributes({ showCategory: value })} 
+          />
+            <SelectControl
+            label="Show Pagination"
+            value={showPagination}
+            options={[
+              { label: 'Show Pagination', value: "Yes" },
+              { label: 'Hide Pagination', value: "No" }
+            ]}
+            onChange={(value) => setAttributes({ showPagination: value })} 
+          />
+
            
         </PanelBody>
+
+        <PanelBody title="Styles" initialOpen={false}>
+              <TextControl
+                  label="Container Max Width"
+                  value={containerMaxWidth}
+                  onChange={(v) => setAttributes({ containerMaxWidth: v })}
+              />
+              <TextControl
+                  label="Section Classes"
+                  value={sectionClass}
+                  onChange={(v) => setAttributes({ sectionClass: v })}
+              />
+              <TextControl
+                  label="Section Background Color"
+                  value={sectionBGColor}
+                  onChange={(v) => setAttributes({ sectionBGColor: v })}
+              />
+
+              <TextControl
+                  label="Section margin top"
+                  value={sectionMarginTop}
+                  onChange={(v) => setAttributes({ sectionMarginTop: v })}
+              />
+
+              <RangeControl
+                  label={__("Section Padding Top  (REM)", "zero")}
+                  value={paddingTop}
+                  onChange={(value) => setAttributes({ paddingTop: value })}
+                  min={0}
+                  max={20}
+                  />
+                  
+              <RangeControl
+                  label={__("Section Padding Bottom (REM)", "zero")}
+                  value={paddingBottom}
+                  onChange={(value) => setAttributes({ paddingBottom: value })}
+                  min={0}
+                  max={20}
+                  /> 
+
+                  <SelectControl
+            label="Text Alignmnet"
+            value={textAlignment}
+            options={[
+              { label: 'Text Left', value: "left" },
+              { label: 'Text Right', value: "right" },
+              { label: 'Text Justify', value: "justify" }
+            ]}
+            onChange={(value) => setAttributes({ textAlignment: value })} 
+          />
+          
+
+          
+          </PanelBody>
+                
+
       </InspectorControls>
 
       <section {...blockProps}>

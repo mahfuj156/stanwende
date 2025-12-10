@@ -63,7 +63,8 @@
      "subtitleFontSize": {
       "type": "number",
       "default": 16
-    }
+    },
+      "imagePosition": { "type": "string", "default": "right" }
   },
 
   "editorScript": "ztb-blocks-js",

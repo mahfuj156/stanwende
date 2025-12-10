@@ -2,10 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Manrope:wght@200..800&display=swap');
+
+
+   .font-lora {
+        font-family: "Lora", serif;
+   }
+    .font-manrope {
+        font-family: "Manrope", sans-serif;
+    }
+
+ .text-h54{
+    font-size: 54px;
+ }
+ .text-h46{
+    font-size: 46px;
+ }
+ .text-h38{
+    font-size: 38px;
+ }
+ .text-h32{
+    font-size: 32px;
+ }
+ .text-h28{
+    font-size: 28px;
+ }
+ .text-h26{
+    font-size: 26px;
+ }
+ .text-h20{
+    font-size: 20px;
+ }
+ 
+
 .custom-column {
     width: 48% !IMPORTANT;
 }
 
+.border-l-2{
+    border-left: 2px solid #06080626;
+ 
+}
+.rounded-18{
+    border-radius: 18px;
+}
 .line-height-loose {
     line-height: 70px !important;
 }
@@ -62,6 +102,7 @@
 }
  
 
+ 
    .faq-button-shadow {
         background: #0608060D;
         box-shadow: 0px 1px 2px 0px #0608060D,
@@ -77,6 +118,11 @@
         box-shadow: 0px 32px 24px 0px #FFFFFF00 inset; 
         background:  #0608060D;
 
+    }
+
+    .paginate-disabled {
+        opacity: 0.4;
+        pointer-events: none;
     }
 
  .after-beforeblock{
@@ -129,6 +175,53 @@
 }
 .text-right{
     text-align: right;
+}
+
+.grid-custom {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+}
+
+/* Center the last item if it's alone in the last row */
+.grid-custom > :nth-last-child(1):nth-child(3n+1) {
+    grid-column: 2 / 3; /* Center horizontally in 3-column layout */
+}
+
+/* Optional: style individual items */
+.grid-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+}
+
+
+.timelime-more a{
+    color: #587D5C;
+    font-size: 16px;
+}
+.border-top-color { 
+    border-top: 1px solid #f0f0f0;
+}
+.border-bottom-color { 
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.border-radious-20{
+    border-radius: 13px 13px 0 0;
+}
+
+.gap-20{
+    gap: 120px;
+}
+
+.pl-5{
+    margin-left: 10px;
+}
+.bg-active{
+    background-color: #587D5C;
 }
 @media (min-width: 768px) {
     .md-hidden-custom { 

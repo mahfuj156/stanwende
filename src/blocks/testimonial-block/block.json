@@ -25,6 +25,34 @@
     "testimonials": {
       "type": "array",
       "default": []
+    },
+      "sectionClass": {
+      "type": "string",
+      "default": ""
+    },
+      "sectionColor": {
+      "type": "string",
+      "default": "#FFF8ED"
+    },
+      "paddingTop": {
+      "type": "number",
+      "default": 6
+    },
+     "paddingBottom": {
+      "type": "number",
+      "default": 6
+    },
+     "maxContainerWidth": {
+      "type": "number",
+      "default": 1312
+    },
+     "titleFontSize": {
+      "type": "number",
+      "default": 46
+    },
+     "subtitleFontSize": {
+      "type": "number",
+      "default": 16
     }
   },
   "supports": {

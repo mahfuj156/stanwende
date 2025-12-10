@@ -17,7 +17,7 @@ $rows        = $attributes['rows'] ?? [];
 
          <!-- Subtitle -->
         <?php if ($subtitle): ?>
-            <p class="mt-8 text-center text-secondary text-p18 leading-150 max-w-2xl mx-auto mb-12">
+            <p class="mt-4 text-center text-secondary text-p18 leading-150 max-w-2xl mx-auto mb-12">
                 <?= wp_kses_post($subtitle); ?>
             </p>
         <?php endif; ?>
@@ -28,7 +28,7 @@ $rows        = $attributes['rows'] ?? [];
         <?php foreach ($columns as $col): ?>
             <div class="space-y-2">
                 <?php if (!empty($col['icon'])): ?>
-                    <img src="<?= esc_url($col['icon']); ?>" alt="" class="mx-auto w-16 md:w-16 object-contain">
+                    <img src="<?= esc_url($col['icon']); ?>" alt="" class="mx-auto w-10 md:w-10 object-contain">
                 <?php endif; ?>
                 <?php if (!empty($col['title'])): ?>
                     <div class="text-h20 font-bold leading-150 text-info"><?= esc_html($col['title']); ?></div>
@@ -86,7 +86,7 @@ $rows        = $attributes['rows'] ?? [];
                     if ($buttonText && $buttonUrl): ?>
                         <div class="flex justify-center mt-2 md:mt-8">
                             <a href="<?= esc_url($buttonUrl); ?>" 
-                            class="inline-block faq-button-shadow  hover:bg-green-1 hover:text-white px-6 py-3 text-p16 font-semibold no-underline rounded-12 shadow-sm">
+                            class="inline-block faq-button-shadow  hover:bg-green-1 hover:text-white px-5 py-3 text-p16 font-semibold no-underline rounded-12 shadow-sm">
                                 <?= esc_html($buttonText); ?>
                             </a>
                         </div>

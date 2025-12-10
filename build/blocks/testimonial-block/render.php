@@ -4,19 +4,37 @@ $subtitle   = $attributes['subtitle'] ?? '';
 $buttonText = $attributes['buttonText'] ?? '';
 $buttonUrl  = $attributes['buttonUrl'] ?? '#';
 $items      = $attributes['testimonials'] ?? [];
+
+
+
+$sectionClass      = $attributes['sectionClass'] ?? '';
+$sectionColor      = $attributes['sectionColor'] ?? '';
+$paddingTop        = $attributes['paddingTop'] ?? 6;
+$paddingBottom     = $attributes['paddingBottom'] ?? 6; 
+$maxContainerWidth = $attributes['maxContainerWidth'] ?? 1312;
+$titleFontSize = $attributes['titleFontSize'] ?? "";
+$subtitleFontSize = $attributes['subtitleFontSize'] ?? "";
+ 
+
+
 ?> 
 
 
-<section class="py-16 bg-bg4 scroll-animate scroll-hidden">
-    <div class="max-w-container-wide mx-auto px-4">
+ <section 
+    class="py-16 bg-bg4 scroll-animate scroll-hidden <?= esc_attr($sectionClass); ?>"
+    style="background-color: <?= esc_attr($sectionColor); ?>; padding-top: <?= esc_attr($paddingTop); ?>rem; padding-bottom: <?= esc_attr($paddingBottom); ?>rem;"
+>
+<div class="max-w-container-wide mx-auto px-4" style="max-width: <?= esc_attr($maxContainerWidth); ?>px;">
+
+ 
         <!-- Title and Subtitle -->
          <?php if(!empty($title)): ?>
-        <h2 class="text-h46 leading-114  font-bold text-center mb-2">
+        <h2 class="text-h46 leading-114  font-bold text-center mb-2" style="font-size: <?= esc_attr($titleFontSize); ?>px;">
             <?= wp_kses_post($title); ?>
         </h2>
         <?php endif; ?>
         <?php if(!empty($subtitle)): ?>
-        <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">
+        <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto" style="font-size: <?= esc_attr($subtitleFontSize); ?>px;">
             <?= wp_kses_post($subtitle); ?>
         </p>
         <?php endif; ?>
@@ -29,16 +47,16 @@ $items      = $attributes['testimonials'] ?? [];
                 class="inline-block bg-primary hover:bg-green-1  shadow-btn-primary text-white px-5 py-3 text-p16 rounded-12 no-underline  text-center"
                 href="<?= esc_url($buttonUrl); ?>"
             >
-                <?= esc_html($buttonText); ?>  <i class="fa-solid fa-arrow-right-long pl-3"></i>
+                <?= wp_kses_post($buttonText); ?>  <i class="fa-solid fa-arrow-right-long pl-3"></i>
             </a>
             <?php endif; ?>
         </div>
 
         <!-- Testimonials Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch"> 
          
                 <?php foreach ($items as $index => $item): ?>
-                    <div class="bg-white rounded-xl p-8 shadow flex flex-col h-full transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                    <div class="bg-white rounded-xl p-8 shadow flex flex-col  transition-transform duration-300 hover:scale-105 hover:shadow-xl mb-2">
                         
                         <!-- Rating -->
                         <div class="flex text-h22 text-gold mb-3">
@@ -48,9 +66,9 @@ $items      = $attributes['testimonials'] ?? [];
 
                         <?php 
                             $text      = $item['text'];
-                            $has_more  = strlen($text) > 300;
-                            $shortText = substr($text, 0, 300);
-                            $restText  = substr($text, 300);
+                            $has_more  = strlen($text) > 250;
+                            $shortText = substr($text, 0, 250);
+                            $restText  = substr($text, 250);
                             ?>
 
                             <!-- Testimonial Text -->

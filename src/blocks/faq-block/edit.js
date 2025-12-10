@@ -18,6 +18,7 @@ import {
 export default function Edit({ attributes, setAttributes }) {
     const {
         title,
+        subtitle,
         items = [],
         buttonText,
         buttonUrl,
@@ -57,19 +58,31 @@ export default function Edit({ attributes, setAttributes }) {
         className: "p-8 md:p-12 bg-gray-50 rounded-xl"
     });
 
+
+const onSelectClientImage = (media) => {
+        setAttributes({
+            clientImage: media.url
+        });
+    };
+
     return (
         <Fragment>
             <InspectorControls>
 
                 {/* GENERAL SETTINGS */}
                 <PanelBody title="FAQ Block Settings" initialOpen={true}>
-                    <TextControl
+                    <TextareaControl
                         label="Title"
                         value={title}
                         onChange={(v) => setAttributes({ title: v })}
                     />
+                    <TextareaControl
+                        label="Sub Title"
+                        value={subtitle}
+                        onChange={(v) => setAttributes({ subtitle: v })}
+                    />
 
-                    <TextControl
+                    <TextareaControl
                         label="Button 1 Text"
                         value={buttonText}
                         onChange={(v) => setAttributes({ buttonText: v })}
@@ -80,7 +93,7 @@ export default function Edit({ attributes, setAttributes }) {
                         onChange={(v) => setAttributes({ buttonUrl: v })}
                     />
 
-                    <TextControl
+                    <TextareaControl
                         label="Button 2 Text"
                         value={buttonText2}
                         onChange={(v) => setAttributes({ buttonText2: v })}
@@ -100,23 +113,60 @@ export default function Edit({ attributes, setAttributes }) {
                         onChange={(v) => setAttributes({ clientName: v })}
                     />
 
+
+                      
+                    {/* Upload Image */}
                     <MediaUploadCheck>
                         <MediaUpload
-                            onSelect={(media) =>
-                                setAttributes({ clientImage: { url: media.url, alt: media.alt } })
-                            }
                             allowedTypes={["image"]}
+                            onSelect={onSelectClientImage}
                             render={({ open }) => (
-                                <Button onClick={open} variant="secondary">
-                                    {clientImage?.url ? "Change Client Image" : "Upload Client Image"}
-                                </Button>
+                                <div style={{ marginBottom: "15px" }}>
+                                    {!clientImage ? (
+                                        <Button
+                                            onClick={open}
+                                            variant="primary"
+                                        >
+                                            Upload Client Image
+                                        </Button>
+                                    ) : (
+                                        <>
+                                            <img
+                                                src={clientImage}
+                                                style={{
+                                                    maxWidth: "100%",
+                                                    borderRadius: "6px",
+                                                    marginBottom: "10px"
+                                                }}
+                                            />
+
+                                            <Button
+                                                onClick={open}
+                                                variant="secondary"
+                                                style={{ marginRight: "8px" }}
+                                            >
+                                                Replace Image
+                                            </Button>
+
+                                            <Button
+                                                variant="secondary"
+                                                onClick={() =>
+                                                    setAttributes({ clientImage: "" })
+                                                }
+                                            >
+                                                Remove
+                                            </Button>
+                                        </>
+                                    )}
+                                </div>
                             )}
                         />
                     </MediaUploadCheck>
+                    
 
-                    {clientImage?.url && (
-                        <img src={clientImage.url} alt={clientImage.alt} className="mt-3 h-20 w-20 rounded-full" />
-                    )}
+                    
+
+
                 </PanelBody>
 
                 {/* FAQ ITEMS */}
@@ -176,7 +226,7 @@ export default function Edit({ attributes, setAttributes }) {
                         value={paddingTop}
                         onChange={(v) => setAttributes({ paddingTop: v })}
                         min={0}
-                        max={10}
+                        max={20}
                     />
 
                     <RangeControl
@@ -184,7 +234,7 @@ export default function Edit({ attributes, setAttributes }) {
                         value={paddingBottom}
                         onChange={(v) => setAttributes({ paddingBottom: v })}
                         min={0}
-                        max={10}
+                        max={20}
                     />
 
                     <SelectControl

@@ -1,0 +1,101 @@
+{
+  "apiVersion": 3,
+  "name": "zero/special-layout-table",
+  "title": "SWende Invest Compare Table (Dynamic)",
+  "category": "widgets",
+  "icon": {
+    "src": "table-col-after"
+  },
+  "description": "Dynamic comparison table - add/remove columns & rows. Column header icon: image or FontAwesome.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "subtitle": {
+      "type": "string",
+      "default": ""
+    },
+    "footerTxt": {
+      "type": "string",
+      "default": ""
+    },
+    "columns": {
+      "type": "array",
+      "default": [
+        {
+          "iconType": "icon",
+          "icon": "fa-solid fa-star",
+          "title": "Col 1",
+          "subtitle": "",
+          "buttonText": "",
+          "buttonUrl": ""
+        },
+        {
+          "iconType": "icon",
+          "icon": "fa-solid fa-gem",
+          "title": "Col 2",
+          "subtitle": "",
+          "buttonText": "",
+          "buttonUrl": ""
+        },
+        {
+          "iconType": "icon",
+          "icon": "fa-solid fa-fire",
+          "title": "Col 3",
+          "subtitle": "",
+          "buttonText": "",
+          "buttonUrl": ""
+        }
+      ]
+    },
+    "rows": {
+      "type": "array",
+      "default": [
+        {
+          "cells": [
+            {
+              "type": "text",
+              "value": "Row 1 Col 1"
+            },
+            {
+              "type": "icon",
+              "value": "fa-solid fa-check"
+            },
+            {
+              "type": "text",
+              "value": "Row 1 Col 3"
+            }
+          ]
+        }
+      ]
+    },
+    "sectionColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "paddingTop": {
+      "type": "number",
+      "default": 6
+    },
+    "paddingBottom": {
+      "type": "number",
+      "default": 6
+    },
+    "titleFontSize": {
+      "type": "number",
+      "default": 46
+    },
+    "subtitleFontSize": {
+      "type": "number",
+      "default": 16
+    }
+  },
+  "editorScript": "ztb-blocks-js",
+  "editorStyle": "ztb-blocks-css",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

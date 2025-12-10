@@ -1,17 +1,45 @@
 {
   "apiVersion": 3,
   "name": "zero/hero-grid",
-  "title": "SWende Hero Grid",
+  "title": "SWende Hero Grid Section",
   "category": "design",
   "icon": "slides",
   "attributes": {
+    "eyebrowIcon": {
+      "type": "string",
+      "default": ""
+    },
+    "eyebrow": {
+      "type": "string",
+      "default": "Feit"
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "subheading": {
+      "type": "string",
+      "default": ""
+    },
     "bullets": {
       "type": "array",
       "default": []
     },
-    "bulletIcons": {
-      "type": "array",
-      "default": []
+    "buttonPrimary": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonPrimaryUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonSecondary": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonSecondaryUrl": {
+      "type": "string",
+      "default": ""
     },
     "images": {
       "type": "array",
@@ -29,13 +57,29 @@
       "type": "string",
       "default": "text-lg flex items-start gap-2"
     },
-    "styleType": {
-      "type": "string",
-      "default": "light"
-    },
     "imagePosition": {
       "type": "string",
       "default": "right"
+    },
+    "sectionColor": {
+      "type": "string",
+      "default": "#F3F7F4"
+    },
+    "paddingTop": {
+      "type": "number",
+      "default": 6
+    },
+    "paddingBottom": {
+      "type": "number",
+      "default": 6
+    },
+    "titleFontSize": {
+      "type": "number",
+      "default": 46
+    },
+    "styleType": {
+      "type": "string",
+      "default": "default"
     }
   },
   "editorScript": "ztb-blocks-js",

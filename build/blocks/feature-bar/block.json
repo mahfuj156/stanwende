@@ -9,6 +9,10 @@
       "type": "array",
       "default": []
     },
+    "logoTitle": {
+      "type": "string",
+      "default": "Bekend van:"
+    },
     "logos": {
       "type": "array",
       "default": []
@@ -16,6 +20,10 @@
     "sectionClass": {
       "type": "string",
       "default": "container mx-auto py-10 bg-white rounded-xl shadow-sm"
+    },
+    "sectionColor": {
+      "type": "string",
+      "default": "white"
     },
     "paddingTop": {
       "type": "number",
@@ -28,6 +36,14 @@
     "sectionMarginTop": {
       "type": "string",
       "default": "0"
+    },
+    "maxContainerWidth": {
+      "type": "number",
+      "default": 1312
+    },
+    "showDivider": {
+      "type": "string",
+      "default": "Yes"
     },
     "columns": {
       "type": "number",

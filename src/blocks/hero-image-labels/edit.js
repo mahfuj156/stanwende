@@ -11,7 +11,8 @@ import {
   TextControl,
   TextareaControl,
   Button,
-  RangeControl
+  RangeControl,
+  SelectControl
 } from '@wordpress/components';
 
 import { Fragment } from '@wordpress/element';
@@ -31,6 +32,7 @@ export default function Edit({ attributes, setAttributes }) {
     paddingTop,
     paddingBottom,
     titleFontSize,
+    imagePosition,
     subtitleFontSize
   } = attributes;
 
@@ -95,7 +97,7 @@ export default function Edit({ attributes, setAttributes }) {
                   value={paddingTop}
                   onChange={(value) => setAttributes({ paddingTop: value })}
                   min={0}
-                  max={10}
+                  max={20}
                   />
                   
               <RangeControl
@@ -103,7 +105,7 @@ export default function Edit({ attributes, setAttributes }) {
                   value={paddingBottom}
                   onChange={(value) => setAttributes({ paddingBottom: value })}
                   min={0}
-                  max={10}
+                  max={20}
                   />
               <RangeControl
                   label={__("Title Font Size (PX)", "zero")}
@@ -119,6 +121,17 @@ export default function Edit({ attributes, setAttributes }) {
                   min={10}
                   max={100}
                   /> 
+
+                  <SelectControl
+                              label="Image Position"
+                              value={imagePosition}
+                              options={[
+                                { label: "Right", value: "right" },
+                                { label: "Left", value: "left" }
+                              ]}
+                              onChange={(v) => setAttributes({ imagePosition: v })}
+                            />
+
           </PanelBody>
           
       </InspectorControls>

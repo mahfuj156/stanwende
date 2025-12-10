@@ -1,7 +1,6 @@
 <?php
 $heading      = $attributes['heading'] ?? ''; 
-$buttonText      = $attributes['buttonText'] ?? ''; 
-$buttonUrl      = $attributes['buttonUrl'] ?? '';
+
 $sectionClass      = $attributes['sectionClass'] ?? '';
 $sectionBGColor      = $attributes['sectionBGColor'] ?? '';
 $paddingTop      = $attributes['paddingTop'] ?? '';
@@ -9,7 +8,8 @@ $paddingBottom      = $attributes['paddingBottom'] ?? '';
 $sectionMarginTop      = $attributes['sectionMarginTop'] ?? '';
 $steps = $attributes["steps"] ?? [];
 $colCount = max(1, count($steps));
-
+$buttonText      = $attributes['buttonText'] ?? ''; 
+$buttonUrl      = $attributes['buttonUrl'] ?? '';
 $bottomLabels = $attributes['bottomLabels'] ?? [];
 
 ?>
@@ -19,7 +19,7 @@ $bottomLabels = $attributes['bottomLabels'] ?? [];
 
    <div class="container mx-auto px-4   relative mb-16 pb-4"> 
       <?php if(!empty($heading)): ?>
-        <h2 class="text-h46 leading-114  font-bold text-center mb-2">
+        <h2 class="text-h38 leading-114  font-bold text-center mb-2">
             <?= wp_kses_post($heading); ?>
         </h2>
         <?php endif; ?>
@@ -38,10 +38,10 @@ $bottomLabels = $attributes['bottomLabels'] ?? [];
                 </div>
 
                 <!-- TITLE -->
-                <h3 class="mt-8 font-bold text-h22 leading-140 text-custom-black"><?= esc_html($step["title"]); ?></h3>
+                <h3 class="mt-8 font-bold text-h22 leading-140 text-custom-black"><?= wp_kses_post($step["title"]); ?></h3>
 
                 <!-- DESCRIPTION -->
-                <p class=" text-p16 leading-150 mt-2 text-[#505250]"><?= esc_html($step["text"]); ?></p>
+                <p class=" text-p16 leading-150 mt-2 text-[#505250] timelime-more"><?= wp_kses_post($step["text"]); ?></p>
 
             </div>
         <?php endforeach; ?> 
@@ -101,7 +101,7 @@ $bottomLabels = $attributes['bottomLabels'] ?? [];
                 <div class="flex items-start md:items-start relative">
                     
                     <!-- Number Circle -->
-                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full border-2 border-[#70A26B] bg-white text-[#70A26B] font-semibold relative z-10">
+                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full border-2 border-[#70A26B] bg-white text-[#70A26B] font-bold text-h22 relative z-10">
                         <?= esc_html($step["number"]); ?>
                     </div>
 
@@ -125,7 +125,7 @@ $bottomLabels = $attributes['bottomLabels'] ?? [];
         <?php endif; ?>
 
         <!-- Bottom Labels -->
-        <div class="flex justify-center gap-8 mt-4 text-gray-600 text-sm flex-wrap">
+        <div class="flex justify-center gap-4 mt-4 text-gray-600 text-sm flex-wrap">
             <?php foreach ($bottomLabels as $label): ?>
                 <div class="flex items-center gap-2 text-p-14 leading-150">
                     <i class="fa-regular fa-circle-check border-green-500 text-green-600 text-md"></i>

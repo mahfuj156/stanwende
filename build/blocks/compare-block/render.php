@@ -53,7 +53,7 @@ $items      = $attributes['items'] ?? [];
                 class="inline-block bg-primary hover:bg-green-1 text-white px-5 py-3 text-p16 rounded-12 no-underline shadow-btn-primary text-center"
                 href="<?= esc_url($buttonUrl); ?>"
             >
-                <?= esc_html($buttonText); ?>  
+                <?= wp_kses_post($buttonText); ?>  
             </a>
         </div>
 

@@ -95,9 +95,13 @@ add_action("init", function () {
     "faq-block",
     "blog-cards",
     "invest-compare",
-    "invest-compare",
     "investment-selector",
     "calculator",
+    "special-layout-table",
+    "performance-graphs",
+    "investment-calculator",
+    "contact-us",
+    "documents",
     "timeline"
 ];
 
@@ -108,3 +112,91 @@ add_action("init", function () {
 });
 
  
+
+/**
+ * AJAX: Load category posts for blog block
+ */
+add_action('wp_ajax_load_category_posts', 'ztb_load_category_posts');
+add_action('wp_ajax_nopriv_load_category_posts', 'ztb_load_category_posts');
+
+function ztb_load_category_posts() {
+
+    check_ajax_referer('ztb-ajax-nonce', 'nonce');
+
+    $category = sanitize_text_field($_POST['category']);
+
+    $args = [
+        'posts_per_page' => 6,
+        'category_name'  => $category,
+        'post_status'    => 'publish'
+    ];
+
+    $query = new WP_Query($args);
+
+    ob_start();
+
+    if ($query->have_posts()) :
+        while ($query->have_posts()) : 
+            $query->the_post();
+            ?>
+
+            <article class="bg-white rounded-lg border border-gray-100 hover:shadow-xl transition-transform duration-300 hover:scale-105 flex flex-col">
+
+                <?php if (has_post_thumbnail()): ?>
+                    <div>
+                        <img src="<?= get_the_post_thumbnail_url(); ?>" 
+                             class="w-full object-cover rounded-t-lg"
+                             alt="<?= esc_attr(get_the_title()); ?>">
+                    </div>
+                <?php endif; ?>
+
+                <div class="p-6 flex-1 flex flex-col">
+                    <?php
+                    $categories = get_the_category();
+                    $primaryCat = $categories ? $categories[0]->name : '';
+                    ?>
+                    <div class="flex items-center gap-3 text-sm text-gray-500 mb-3">
+                        <span class="px-3 py-1 rounded-md bg-gray-100 text-info text-p16">
+                            <?= esc_html($primaryCat); ?>
+                        </span>
+                        <span class="text-828382 text-p14 font-bold">
+                            <?= get_the_date('j M Y'); ?>
+                        </span>
+                    </div>
+
+                    <h4 class="font-bold text-h22 text-custom-black"><?= get_the_title(); ?></h4>
+                    <p class="text-custom-black text-p16 mt-2">
+                        <?= wp_trim_words(get_the_excerpt(), 20); ?>
+                    </p>
+                </div>
+            </article>
+
+            <?php
+        endwhile;
+    else:
+        echo '<p class="text-center text-gray-500 col-span-3">No posts found in this category.</p>';
+    endif;
+
+    echo ob_get_clean();
+    wp_die();
+}
+
+/**
+ * Enqueue JS for AJAX category filter
+ */
+add_action('wp_enqueue_scripts', 'ztb_enqueue_ajax_filter_script');
+function ztb_enqueue_ajax_filter_script() {
+
+    wp_enqueue_script(
+        'ztb-ajax-category',
+        plugin_dir_url(__FILE__) . 'ajax-category.js',
+        [],
+        null,
+        true
+    );
+
+    wp_localize_script('ztb-ajax-category', 'ztb_ajax', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce'    => wp_create_nonce('ztb-ajax-nonce')
+    ]);
+}

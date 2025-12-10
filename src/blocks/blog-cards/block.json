@@ -23,8 +23,45 @@
       "default": 6
     },
      "order": { "type": "string", "default": "DESC" },
-     "buttonText": { "type": "string", "default": true },
-     "buttonUrl": { "type": "string", "default": true }
+     "buttonText": { "type": "string", "default":"More" },
+     "buttonUrl": { "type": "string", "default": "#" },
+      "containerMaxWidth": {
+      "type": "number",
+      "default": 1312
+    },
+     "sectionClass": {
+      "type": "string",
+      "default": "  mx-auto py-10 bg-white rounded-xl shadow-sm"
+    },
+      "sectionBGColor": {
+      "type": "string",
+      "default": "#E4ECE5"
+    },
+
+      "paddingTop": {
+      "type": "number",
+      "default": 6
+    },
+     "paddingBottom": {
+      "type": "number",
+      "default": 6
+    },
+    "sectionMarginTop": {
+      "type": "string",
+      "default": "0"
+    },
+      "textAlignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "showCategory": {
+      "type": "string",
+      "default": "No"
+    },
+    "showPagination": {
+      "type": "string",
+      "default": "No"
+    }
   },
   "editorScript": "blog-cards-js",
   "editorStyle": "blog-cards-css",

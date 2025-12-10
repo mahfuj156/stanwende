@@ -1,0 +1,20 @@
+{
+  "apiVersion": 3,
+  "name": "zero/investment-calculator",
+  "title": "Investment Calculator",
+  "category": "widgets",
+  "icon": "dashboard",
+  "description": "Interactive investment calculator with sliders, charts and sustainability metrics.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Wat brengt het op?"
+    }
+  },
+  "editorScript": "ztb-blocks-js",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

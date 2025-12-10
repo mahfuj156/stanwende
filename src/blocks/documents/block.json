@@ -1,0 +1,102 @@
+{
+  "apiVersion": 3,
+  "name": "zero/documents",
+  "title": "Documents Overview",
+  "category": "design",
+  "icon": "star-filled",
+  "attributes": {
+    "heading": { "type": "string", "default": "" },
+    "subheading": { "type": "string", "default": "" },
+
+    "items": {
+      "type": "array",
+      "default": []
+    },
+
+     "buttonText": {
+      "type": "string",
+      "default": "Bekijk alle vragen"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "#"
+    },
+    "buttonText2": {
+      "type": "string",
+      "default": "Bekijk alle vragen"
+    },
+    "buttonUrl2": {
+      "type": "string",
+      "default": "#"
+    },
+
+    "clientName": {
+      "type": "string",
+      "default": "Alex de Vries"
+    },
+    "clientImage": {
+      "type": "object",
+      "default": {
+        "url": "",
+        "alt": ""
+      }
+    },
+
+     "clientLayout": {
+        "type": "string",
+        "default": "stacked",
+        "enum": ["stacked", "inline"]
+    }, 
+    "sectionClass": {
+      "type": "string",
+      "default": "container mx-auto py-10 bg-white rounded-xl shadow-sm"
+    },
+    "sectionColor": {
+      "type": "string",
+      "default": "white"
+    },
+    "paddingTop": {
+      "type": "number",
+      "default": 6
+    },
+    "paddingBottom": {
+      "type": "number",
+      "default": 6
+    },
+    "sectionMarginTop": {
+      "type": "string",
+      "default": "0"
+    },
+    "titleMarginBottom": {
+      "type": "number",
+      "default": 2
+    },
+    "titleFontSize": {
+      "type": "number",
+      "default": 46
+    },
+    "subTitleFontSize": {
+      "type": "number",
+      "default": 36
+    },
+    "panelTitleFontSize": {
+      "type": "number",
+      "default": 16
+    },
+    "panelTitleTag": {
+      "type": "string",
+      "default": "h3"
+    },
+    "linkStyle": {
+      "type": "string",
+      "default": "no-underline"
+    },
+    "columns": {
+      "type": "number",
+      "default": 3
+    }
+  },
+  "editorScript": "ztb-blocks-js",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

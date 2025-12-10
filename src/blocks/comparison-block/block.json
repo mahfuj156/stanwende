@@ -42,9 +42,33 @@
       "type": "string",
       "default": "Button"
     },
-    "bgColor": {
+    "buttonUrl": {
+      "type": "string",
+      "default": "Button"
+    }, 
+     "sectionClass": {
+      "type": "string",
+      "default": "container mx-auto py-10 bg-white rounded-xl shadow-sm"
+    },
+    "sectionColor": {
       "type": "string",
       "default": "#E4ECE5"
+    },
+    "paddingTop": {
+      "type": "number",
+      "default": 6
+    },
+    "paddingBottom": {
+      "type": "number",
+      "default": 6
+    },
+     "maxContainerWidth": {
+      "type": "number",
+      "default": 1312
+    },
+    "sectionMarginTop": {
+      "type": "string",
+      "default": "0"
     }
   },
   "supports": {

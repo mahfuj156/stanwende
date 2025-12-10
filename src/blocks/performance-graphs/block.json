@@ -1,0 +1,57 @@
+{
+  "apiVersion": 3,
+  "name": "zero/performance-graphs",
+  "title": "Performance Graphs",
+  "category": "widgets",
+  "icon": "chart-bar",
+  "description": "Repeater of images with optional captions, displayed in 1–3 columns.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "heading": { "type": "string", "default": "" },
+    "subheading": { "type": "string", "default": "" },
+    "items": {
+      "type": "array",
+      "default": []
+    },
+    "columns": { "type": "number", "default": 1 },
+       "sectionColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+        "buttonText": {
+      "type": "string",
+      "default": "Button"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "#"
+    },
+     "bottomLabels": {
+      "type": "array",
+      "default": ["BezwaaR wegnemen", "Drempel verlagen", "Twijfel wegnemen"]
+    },
+    
+      "paddingTop": {
+      "type": "number",
+      "default": 6
+    },
+     "paddingBottom": {
+      "type": "number",
+      "default": 6
+    },
+     "titleFontSize": {
+      "type": "number",
+      "default": 46
+    },
+     "subtitleFontSize": {
+      "type": "number",
+      "default": 16
+    }
+  },
+ "editorScript": "ztb-blocks-js",
+  "editorStyle": "ztb-blocks-css",
+  "style": "ztb-blocks-css",
+  "render": "file:./render.php"
+}

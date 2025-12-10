@@ -1,8 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import {
     InspectorControls,
-    useBlockProps,
-    RichText,
+    useBlockProps, 
     MediaUpload,
     MediaUploadCheck
 } from "@wordpress/block-editor";
@@ -10,8 +9,7 @@ import {
 import {
     PanelBody,
     TextControl,
-    Button,
-    SelectControl,
+    Button, 
     RangeControl,
     TextareaControl
 } from "@wordpress/components";
@@ -269,7 +267,7 @@ export default function Edit({ attributes, setAttributes }) {
                             value={paddingTop}
                             onChange={(value) => setAttributes({ paddingTop: value })}
                             min={0}
-                            max={10}
+                            max={20}
                             />
                             
                         <RangeControl
@@ -277,7 +275,7 @@ export default function Edit({ attributes, setAttributes }) {
                             value={paddingBottom}
                             onChange={(value) => setAttributes({ paddingBottom: value })}
                             min={0}
-                            max={10}
+                            max={20}
                             /> 
 
 

@@ -1,5 +1,7 @@
 <?php
+$eyebrowIcon = $attributes['eyebrowIcon'] ?? '';
 $heading = $attributes['heading'] ?? '';
+$eyebrow = $attributes['eyebrow'] ?? '';
 $subheading = $attributes['subheading'] ?? '';
 $bullets = $attributes['bullets'] ?? [];
 $buttonPrimary = $attributes['buttonPrimary'] ?? '';
@@ -13,16 +15,18 @@ $sectionClass = $attributes['sectionClass'] ?? 'mx-auto py-20';
 $paddingTop = $attributes['paddingTop'] ?? 0;
 $paddingBottom = $attributes['paddingBottom'] ?? 0;
 $titleFontSize = $attributes['titleFontSize'] ?? 46;
+$leftColumnWidthClass = $attributes['leftColumnWidthClass'] ?? "md:w-7/12";
+$rightColumnWidthClass = $attributes['rightColumnWidthClass'] ?? "md:w-5/12";
  
 ?>
-
+ 
 <section class="mx-auto px-4 scroll-animate scroll-hidden <?= esc_attr($sectionClass); ?>" 
          style="background-color: <?= esc_attr($sectionColor); ?>; padding-top: <?= esc_attr($paddingTop); ?>rem; padding-bottom: <?= esc_attr($paddingBottom); ?>rem;">
     <div class="max-w-container-wide mx-auto flex flex-col md:flex-row gap-16 justify-center items-center">
 
         <?php if($imagePosition === 'left'): ?>
             <!-- IMAGES -->
-            <div class="w-full md:w-5/12">
+            <div class="w-full <?= esc_attr($rightColumnWidthClass); ?> ">
                 <?php if (!empty($images)): ?>
                 <div x-data="{
                         current: 0,
@@ -53,33 +57,63 @@ $titleFontSize = $attributes['titleFontSize'] ?? 46;
 
                 <!-- Desktop Masonry -->
                 <div class="hidden md:block columns-2 gap-4">
-                    <?php foreach ($images as $img): ?>
-                        <img src="<?= esc_url($img['url']); ?>" class="mb-4 rounded-xl w-full break-inside-avoid" />
+                    <?php foreach ($images as $key=> $img): ?>
+                        <img src="<?= esc_url($img['url']); ?>" style=" <?php if($key==0){ echo "margin-top: 12px";} ?>" class="mb-4 rounded-xl w-full break-inside-avoid" />
                     <?php endforeach; ?>
                 </div>
                 <?php endif; ?>
             </div>
 
             <!-- TEXT -->
-            <div class="flex flex-col w-full md:w-7/12 gap-3">
+            <div class="flex flex-col w-full <?= esc_attr($leftColumnWidthClass); ?>   gap-3">
+           
+                 <?php if ($eyebrowIcon): ?>
+                <img src="<?= esc_url($eyebrowIcon); ?>" alt="Eyebrow Icon" class="w-10 mb-4">
+            <?php endif; ?>
+
+
+            <?php if ($eyebrow): ?>
+                <div class="text-h18 text-primary font-semibold mb-2">
+                    <?= esc_html($eyebrow); ?>
+                </div>
+             <?php endif; ?>
+
+
                 <?php if($heading): ?>
                     <h1 class="text-3xl sm:text-4xl md:text-6xl text-custom-black font-bold leading-snug"
                         style="font-size: <?= esc_attr($titleFontSize); ?>px;">
-                        <?= esc_html($heading); ?>
+                        <?= wp_kses_post($heading); ?>
                     </h1>
                 <?php endif; ?>
 
                 <?php if ($subheading): ?>
-                    <p class="mt-4 text-base sm:text-lg"><?= wp_kses_post($subheading); ?></p>
+                    <p class="mt-4 text-p18"><?= wp_kses_post($subheading); ?></p>
                 <?php endif; ?>
 
                 <?php if (!empty($bullets)): ?>
-                    <ul class="list-disc space-y-2 mt-6">
-                        <?php foreach ($bullets as $b): ?>
-                            <li class="flex items-center text-base sm:text-lg">
-                                <span class="text-green-light mr-2"><i class="fa-regular fa-circle-check"></i></span>
-                                <?= wp_kses_post($b); ?>
+                    <ul class="list-disc space-y-1 mt-6">
+                        <?php foreach ($bullets as $item): ?>
+                            <li class="flex items-center text-p16">
+ <?php  if (!empty($item['iconImage']['url'])): ?>
+                                <span class="text-green-light mr-2"><img 
+                            src="<?= esc_url($item['iconImage']['url']); ?>" 
+                           class="  " 
+                            alt="icon"
+                        /> </span>
+                                <?php else:
+                                ?>
+                             
+                                <?php
+                                endif; ?> 
+
+                                   <?php if (!empty($item['title'])): ?>
+                                       <span>
+                                        <?php if($item['link']): ?> <a href="<?= esc_url($item['link']); ?>"> <?php endif; ?> <?= wp_kses_post($item['title']); ?> <?php if($item['link']): ?></a> <?php endif; ?> </span> 
+          <?php endif; ?>
+
                             </li>
+ 
+
                         <?php endforeach; ?>
                     </ul>
                 <?php endif; ?>
@@ -88,14 +122,14 @@ $titleFontSize = $attributes['titleFontSize'] ?? 46;
                     <div class="mt-6 flex gap-4 flex-wrap">
                         <?php if ($buttonPrimary): ?>
                             <a href="<?= esc_url($buttonPrimaryUrl); ?>"
-                               class="px-6 py-3 bg-green-light hover:bg-green-1 text-white rounded-lg no-underline btn-shadow">
-                               <?= esc_html($buttonPrimary); ?>
+                               class="px-5 py-3 bg-green-light hover:bg-green-1 text-white rounded-xl no-underline btn-shadow">
+                               <?= wp_kses_post($buttonPrimary); ?>
                             </a>
                         <?php endif; ?>
                         <?php if ($buttonSecondary): ?>
                             <a href="<?= esc_url($buttonSecondaryUrl); ?>"
-                               class="px-6 py-3 bg-gray-200 rounded-lg hover:bg-green-1 hover:text-white no-underline btn-offset-shadow">
-                               <?= esc_html($buttonSecondary); ?>
+                               class="px-5 py-3 bg-gray-200 rounded-xl hover:bg-green-1 hover:text-white no-underline btn-offset-shadow">
+                               <?= wp_kses_post($buttonSecondary); ?>
                             </a>
                         <?php endif; ?>
                     </div>
@@ -104,25 +138,55 @@ $titleFontSize = $attributes['titleFontSize'] ?? 46;
 
         <?php else: ?>
             <!-- TEXT FIRST -->
-            <div class="flex flex-col w-full md:w-7/12 gap-3">
+            <div class="flex flex-col w-full <?= esc_attr($leftColumnWidthClass); ?>  gap-3">
+
+                 <?php if ($eyebrowIcon): ?>
+                <img src="<?= esc_url($eyebrowIcon); ?>" alt="Eyebrow Icon" class="w-10 mb-4 ">
+            <?php endif; ?>
+
+
+            <?php if ($eyebrow): ?>
+                <div class="text-h18 text-primary font-semibold mb-2">
+                    <?= esc_html($eyebrow); ?>
+                </div>
+             <?php endif; ?>
+
                 <?php if($heading): ?>
                     <h1 class="text-3xl sm:text-4xl md:text-6xl text-custom-black font-bold leading-snug"
                         style="font-size: <?= esc_attr($titleFontSize); ?>px;">
-                        <?= esc_html($heading); ?>
+                        <?= wp_kses_post($heading); ?>
                     </h1>
                 <?php endif; ?>
 
                 <?php if ($subheading): ?>
-                    <p class="mt-4 text-base sm:text-lg"><?= wp_kses_post($subheading); ?></p>
+                    <p class="mt-4 text-p18"><?= wp_kses_post($subheading); ?></p>
                 <?php endif; ?>
 
-                <?php if (!empty($bullets)): ?>
-                    <ul class="list-disc space-y-2 mt-6">
-                        <?php foreach ($bullets as $b): ?>
-                            <li class="flex items-center text-base sm:text-lg">
-                                <span class="text-green-light mr-2"><i class="fa-regular fa-circle-check"></i></span>
-                                <?= wp_kses_post($b); ?>
+               <?php if (!empty($bullets)): ?>
+                    <ul class="list-disc space-y-1 mt-6">
+                        <?php foreach ($bullets as $item): ?>
+                            <li class="flex items-center text-p16">
+ <?php  if (!empty($item['iconImage']['url'])): ?>
+                                <span class="text-green-light mr-2"><img 
+                            src="<?= esc_url($item['iconImage']['url']); ?>" 
+                           class="  " 
+                            alt="icon"
+                        /> </span>
+                                <?php else:
+                                ?>
+                             
+                                <?php
+                                endif; ?> 
+
+                                   <?php if (!empty($item['title'])): ?>
+                                       <span>
+                                        <?php if($item['link']): ?> <a href="<?= esc_url($item['link']); ?>"> <?php endif; ?> <?= wp_kses_post($item['title']); ?> <?php if($item['link']): ?></a> <?php endif; ?>
+                                             
+          <?php endif; ?>
+
                             </li>
+ 
+
                         <?php endforeach; ?>
                     </ul>
                 <?php endif; ?>
@@ -131,14 +195,14 @@ $titleFontSize = $attributes['titleFontSize'] ?? 46;
                     <div class="mt-6 flex gap-4 flex-wrap">
                         <?php if ($buttonPrimary): ?>
                             <a href="<?= esc_url($buttonPrimaryUrl); ?>"
-                               class="px-6 py-3 bg-green-light hover:bg-green-1 text-white rounded-lg no-underline btn-shadow">
-                               <?= esc_html($buttonPrimary); ?>
+                               class="px-5 py-3 bg-green-light hover:bg-green-1 text-white rounded-xl no-underline btn-shadow">
+                               <?= wp_kses_post($buttonPrimary); ?>
                             </a>
                         <?php endif; ?>
                         <?php if ($buttonSecondary): ?>
                             <a href="<?= esc_url($buttonSecondaryUrl); ?>"
-                               class="px-6 py-3 bg-gray-200 rounded-lg hover:bg-green-1 hover:text-white no-underline btn-offset-shadow">
-                               <?= esc_html($buttonSecondary); ?>
+                               class="px-5 py-3 bg-gray-200 rounded-xl hover:bg-green-1 hover:text-white no-underline btn-offset-shadow">
+                               <?= wp_kses_post($buttonSecondary); ?>
                             </a>
                         <?php endif; ?>
                     </div>
@@ -146,7 +210,7 @@ $titleFontSize = $attributes['titleFontSize'] ?? 46;
             </div>
 
             <!-- IMAGES -->
-            <div class="w-full md:w-5/12">
+            <div class="w-full <?= esc_attr($rightColumnWidthClass); ?> ">
                 <?php if (!empty($images) && sizeof($images) > 1){  ?>
 
 
@@ -186,8 +250,8 @@ $titleFontSize = $attributes['titleFontSize'] ?? 46;
 
                 <!-- Desktop Masonry -->
                 <div class="hidden md:block columns-2 gap-4">
-                    <?php foreach ($images as $img): ?>
-                        <img src="<?= esc_url($img['url']); ?>" class="mb-4 rounded-xl w-full break-inside-avoid" />
+                    <?php foreach ($images as $key => $img): ?>
+                        <img src="<?= esc_url($img['url']); ?>"  style=" <?php if($key==0){ echo "margin-top: 12px";} ?>" class="mb-4 rounded-xl w-full break-inside-avoid" />
                     <?php endforeach; ?>
                 </div>
                 
